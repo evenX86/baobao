@@ -1,4 +1,4 @@
-package com.alexura.baobao;
+package com.alexura.baobao.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
