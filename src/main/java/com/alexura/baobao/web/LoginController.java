@@ -1,5 +1,6 @@
 package com.alexura.baobao.web;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,26 +23,30 @@ public class LoginController {
 
     private static final String SESSION_KEY = "user";
     @RequestMapping("/index")
-    public String index(@SessionAttribute(SESSION_KEY) String account, ModelMap model) {
-        log.error("request index");
+    public String index(HttpSession session, ModelMap model) {
+        if(session == null || session.getAttribute(SESSION_KEY) == null) {
+            return login();
+        }
+        String account = (String) session.getAttribute(SESSION_KEY);
+        log.error("request index account : " + account);
         model.addAttribute("name", account);
         return "index";
-
     }
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 
     @PostMapping("/doLogin")
-    public @ResponseBody Map<String, Object> doLogin(String account, String passwd, HttpSession session) {
+    public String doLogin(String account, String passwd, HttpSession session) {
         Map<String, Object> map = new HashMap<>();
         log.error("xuyifei debug account : " + account);
         log.error("xuyifei debug passwd : " + passwd);
         if (!"123456".equals(passwd)) {
             map.put("success", false);
             map.put("message", "密码错误");
-            return map;
+            return login();
         }
 
         // 设置session
@@ -49,6 +54,13 @@ public class LoginController {
 
         map.put("success", true);
         map.put("message", "登录成功");
-        return map;
+        return "redirect:/index";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        // 移除session
+        session.removeAttribute(SESSION_KEY);
+        return "redirect:/login";
     }
 }

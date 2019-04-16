@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created with baobao
  *
@@ -18,7 +20,8 @@ public class ActivityController {
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping("addActivity")
-    public String add(Model model) {
-        return "addActivity";
+    public String add(Model model, HttpSession session) {
+        model.addAttribute("name", "admin");
+        return "add-act";
     }
 }
