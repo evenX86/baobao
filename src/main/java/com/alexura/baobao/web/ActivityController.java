@@ -31,21 +31,26 @@ public class ActivityController {
     @Autowired
     private ImageUploadService imageUploadService;
 
+    private static final String SESSION_KEY = "user";
+
     @RequestMapping("addActivity")
     public String add(Model model, HttpSession session) {
+        if(session == null || session.getAttribute(SESSION_KEY) == null) {
+            return "login";
+        }
         model.addAttribute("name", "admin");
         return "add-act";
     }
     @PostMapping("/saveActivity")
     public String saveActivity(String name, String addr, String num, String contacts, String tel, String desc, MultipartFile file1, String date) {
+
         // 服务器上上传文件的相对路径
         String uploadPath = "static/img/";
         // 服务器上上传文件的物理路径
         String path = getClass().getClassLoader().getResource(uploadPath).getPath();
         String imageURL = imageUploadService.uploadImage( file1, uploadPath, path);
-        imageURL = "http://localhost:8080/"+imageURL;
         Activity activity = new Activity(name,addr, num, contacts,tel, desc, imageURL, date);
         dataService.addActivity(activity);
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

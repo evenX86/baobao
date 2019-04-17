@@ -25,7 +25,7 @@ public class LoginController {
     @Autowired
     private DataService dataService;
     private static final String SESSION_KEY = "user";
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public String index(HttpSession session, ModelMap model) {
         if(session == null || session.getAttribute(SESSION_KEY) == null) {
             return login();
@@ -57,7 +57,7 @@ public class LoginController {
 
         map.put("success", true);
         map.put("message", "登录成功");
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
