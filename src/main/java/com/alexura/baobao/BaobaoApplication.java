@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @RestController
-@MapperScan("com.alexura.baobao.mapper")
 public class BaobaoApplication {
 
 

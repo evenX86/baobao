@@ -24,13 +24,9 @@ import java.util.List;
 public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    private UserMapper userMapper;
+    //@Autowired
+    //private UserMapper userMapper;
 
-    @RequestMapping("/getAllUser")
-    public List<UserEntity> getAllUser() {
-        return userMapper.getAll();
-    }
     @RequestMapping("/add")
     public void save(UserEntity user) {
 

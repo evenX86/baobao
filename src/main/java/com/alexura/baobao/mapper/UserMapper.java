@@ -11,7 +11,6 @@ import java.util.List;
  * @author xuyifei
  * @date 2019-03-17 6:10 PM
  */
-@Mapper
 public interface UserMapper {
 
 

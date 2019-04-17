@@ -25,7 +25,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="../static/img/profile_small.jpg" width="30" height="30"/>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs" th:text="${name}"> <strong class="font-bold"></strong>
@@ -221,50 +221,17 @@
                                         <th>备注</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody th:each="data:${dataList}">
                                     <tr>
                                         <td>1</td>
-                                        <td>温州二中篮球社</td>
-                                        <td>2019-01-02</td>
-                                        <td>学校</td>
-                                        <td>23</td>
-                                        <td><a>点击查看</a></td>
-                                        <td>林老师</td>
-                                        <td>12345678</td>
-                                        <td>测试数据</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>温州二中篮球社</td>
-                                        <td>2019-01-02</td>
-                                        <td>学校</td>
-                                        <td>23</td>
-                                        <td><a>点击查看</a></td>
-                                        <td>林老师</td>
-                                        <td>12345678</td>
-                                        <td>测试数据</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>温州二中篮球社</td>
-                                        <td>2019-01-02</td>
-                                        <td>学校</td>
-                                        <td>23</td>
-                                        <td><a>点击查看</a></td>
-                                        <td>林老师</td>
-                                        <td>12345678</td>
-                                        <td>测试数据</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>温州二中篮球社</td>
-                                        <td>2019-01-02</td>
-                                        <td>学校</td>
-                                        <td>23</td>
-                                        <td><a>点击查看</a></td>
-                                        <td>林老师</td>
-                                        <td>12345678</td>
-                                        <td>测试数据</td>
+                                        <td th:text="${data.getName()}">...</td>
+                                        <td th:text="${data.getDate()}">...</td>
+                                        <td th:text="${data.getAddr()}">...</td>
+                                        <td th:text="${data.getNum()}">...</td>
+                                        <td><img th:src="${data.getImg()}" width="30" height="30"></td>
+                                        <td th:text="${data.getContacts()}">...</td>
+                                        <td th:text="${data.getTel()}">...</td>
+                                        <td th:text="${data.getDesc()}">...</td>
                                     </tr>
                                     </tbody>
                                 </table>
