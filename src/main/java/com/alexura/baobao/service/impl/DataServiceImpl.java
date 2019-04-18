@@ -1,6 +1,7 @@
-package com.alexura.baobao.service;
+package com.alexura.baobao.service.impl;
 
 import com.alexura.baobao.domain.Activity;
+import com.alexura.baobao.service.DataService;
 import javafx.scene.chart.PieChart;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;

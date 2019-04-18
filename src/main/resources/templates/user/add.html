@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:include="header :: commonHead('体育社区 | 活动录入')"></head>
+
+<head th:include="header :: commonHead('体育社区 | 用户注册')"></head>
 <body>
 <div id="wrapper">
+
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
@@ -136,16 +138,9 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div>
-                <strong>Copyright</strong> 温州体育局 &copy; 2019-2020
-            </div>
-        </div>
-
+        <div th:include="footer :: footer"></div>
     </div>
 </div>
-
-<span th:include="common_js:: commonOnLoadJs"></span>
+<span th:include="common_js :: commonOnLoadJs"></span>
 </body>
-
 </html>

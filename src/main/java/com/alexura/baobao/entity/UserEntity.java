@@ -19,7 +19,7 @@ import java.sql.Date;
  * @date 2019-03-17 6:11 PM
  */
 public class UserEntity {
-    private Long id;
+    private Integer id;
     private String name;
     private String tel;
     private String passwd;
@@ -27,11 +27,11 @@ public class UserEntity {
     private Date created;
     private Date modified;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

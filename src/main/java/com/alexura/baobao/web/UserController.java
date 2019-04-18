@@ -1,17 +1,13 @@
 package com.alexura.baobao.web;
 
 import com.alexura.baobao.entity.UserEntity;
-import com.alexura.baobao.mapper.UserMapper;
+import com.alexura.baobao.service.UserService;
 import com.alexura.baobao.utils.JsonUtil;
-import com.alibaba.druid.support.json.JSONUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * Created with baobao
@@ -24,19 +20,18 @@ import java.util.List;
 public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    //@Autowired
-    //private UserMapper userMapper;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/add")
-    public void save(UserEntity user) {
+    public String save() {
+        return "user/add";
 
-        log.error(JsonUtil.write2JsonStr(user));
-
-        user = new UserEntity();
-
-        user.setName("admin");
-        user.setTel("1342");
-
-        //userMapper.insert(user);
     }
+
+    @RequestMapping("/list")
+    public String list() {
+        return "user/list";
+    }
+
 }
