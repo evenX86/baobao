@@ -1,5 +1,6 @@
 package com.alexura.baobao.service.impl;
 
+import com.alexura.baobao.domain.User;
 import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.UserService;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,15 @@ public class UserServiceImpl  implements UserService {
     @Override
     public void addUser(UserEntity userEntity) {
         int size = userEntityList.size();
+        userEntity.setId(size+1);
+        userEntityList.add(userEntity);
+    }
+
+    @Override
+    public void addUser(User user) {
+        int size = userEntityList.size();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setName(user.getName());
         userEntity.setId(size+1);
         userEntityList.add(userEntity);
     }
