@@ -33,12 +33,12 @@
                     <span class="nav-label">活动录入</span>
                 </a>
             </li>
-            <li>
+            <li th:class="${#strings.contains(menu,'user')}?'active':''">
                 <a href="#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li th:class="${menu=='userList'}?'active':''">
                         <a href="/user/list">
-                            <span class="nav-label"></span>
+                            <span class="nav-label">用户统计</span>
                         </a></li>
                     <li th:class="${menu=='userAdd'}?'active':''">
                         <a href="/user/add">

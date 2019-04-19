@@ -29,10 +29,10 @@
                             <a href="index.html">首页</a>
                         </li>
                         <li>
-                            <a>活动</a>
+                            <a>用户</a>
                         </li>
                         <li class="active">
-                            <strong>活动录入</strong>
+                            <strong>用户录入</strong>
                         </li>
                     </ol>
                 </div>
@@ -45,13 +45,12 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
-                                <form method="post" class="form-horizontal" action="/activity/saveActivity" enctype="multipart/form-data">
-                                    <div class="form-group"><label class="col-sm-2 control-label">社团名称</label>
-
+                                <form method="post" class="form-horizontal" action="/user/doAddUser" enctype="multipart/form-data">
+                                    <div class="form-group"><label class="col-sm-2 control-label">账户</label>
                                         <div class="col-sm-10"><input name="name" type="text" class="form-control"></div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
-                                    <div class="form-group"><label class="col-sm-2 control-label">活动地点</label>
+                                    <div class="form-group"><label class="col-sm-2 control-label">联系方式</label>
                                         <div class="col-sm-10"><input name="addr" type="text" class="form-control"></div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
@@ -84,13 +83,13 @@
                                     </div>
                                     <div class="hr-line-dashed"></div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">图片上传</label>
+                                        <label class="col-sm-2 control-label">头像</label>
                                         <div class="col-sm-10">
                                             <label title="Upload image file" for="inputImage1"
                                                    class="btn btn-primary">
                                                 <input type="file" accept="image/*" name="file1" id="inputImage1"
                                                        class="hide">
-                                                选取文件
+                                                选取图片
                                             </label>
                                             <img src="" id="show" width="200">
                                         </div>
