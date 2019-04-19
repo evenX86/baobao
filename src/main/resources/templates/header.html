@@ -11,4 +11,42 @@
     <link th:href="@{/static/css/style.css}" rel="stylesheet">
     <link th:href="@{/static/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet">
 </head>
+<nav class="navbar-default navbar-static-side" role="navigation" th:fragment="commonMenu(menu,menuName)">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="../static/img/profile_small.jpg" width="30" height="30"/>
+                             </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs" th:text="${name}"> <strong class="font-bold"></strong>
+                             </span> <span class="text-muted text-xs block">管理员 </span> </span> </a>
+                </div>
+            </li>
+            <li th:class="${menu=='statistics'}?'active':''">
+                <a href="/"><i class="fa fa-edit"></i>
+                    <span class="nav-label">数据统计</span>
+                </a>
+            </li>
+            <li th:class="${menu=='addActivity'}?'active':''">
+                <a href="/activity/addActivity"><i class="fa fa-edit"></i>
+                    <span class="nav-label">活动录入</span>
+                </a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li th:class="${menu=='userList'}?'active':''">
+                        <a href="/user/list">
+                            <span class="nav-label"></span>
+                        </a></li>
+                    <li th:class="${menu=='userAdd'}?'active':''">
+                        <a href="/user/add">
+                            <span class="nav-label">用户添加</span>
+                        </a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
 </html>

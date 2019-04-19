@@ -3,35 +3,8 @@
 <head th:include="header :: commonHead('体育社区 | 活动录入')"></head>
 <body>
 <div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element"> <span>
-                         <img alt="image" class="img-circle" src="../static/img/profile_small.jpg" width="30" height="30"/>
-                             </span>
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs" th:text="${name}"> <strong class="font-bold"></strong>
-                             </span> <span class="text-muted text-xs block">管理员 </span> </span> </a>
-                    </div>
-                    <div class="logo-element">
-                        IN+
-                    </div>
-                </li>
-                <li>
-                    <a href="/"><i class="fa fa-edit"></i> <span class="nav-label">数据统计</span></a>
-                </li>
-                <li class="active">
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">活动录入</span></a>
-                </li>
-                <li>
-                    <a target="_blank" href="/user/manager"><i class="fa fa-star"></i> <span class="nav-label">用户管理</span> <span class="label label-warning pull-right">NEW</span></a>
-                </li>
-            </ul>
-
-        </div>
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="header :: commonMenu('addActivity','活动添加')">
     </nav>
-
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -136,12 +109,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div>
-                <strong>Copyright</strong> 温州体育局 &copy; 2019-2020
-            </div>
-        </div>
-
+        <div class="footer" th:include="footer::footer"></div>
     </div>
 </div>
 
