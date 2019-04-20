@@ -5,6 +5,7 @@ import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,12 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public void addUser(UserEntity userEntity) {
-        int size = userEntityList.size();
+        int size = 1;
+        if (userEntityList == null) {
+            userEntityList = new ArrayList<>();
+        } else {
+            size = userEntityList.size();
+        }
         userEntity.setId(size+1);
         userEntityList.add(userEntity);
     }
