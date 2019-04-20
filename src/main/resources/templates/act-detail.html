@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="header :: commonHead('体育社区 | 社团活动信息明细')"></head>
+<body>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="header :: commonMenu('act-detail','社团活动信息明细')">
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-sign-out"></i> 登出
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>社团活动明细</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="index.html">首页</a>
+                    </li>
+                    <li>
+                        <a>数据</a>
+                    </li>
+                    <li class="active">
+                        <strong>统计</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>社团活动信息</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+
+                                        <th>#</th>
+                                        <th>社团名称 </th>
+                                        <th>活动时间 </th>
+                                        <th>活动地点</th>
+                                        <th>参与人数</th>
+                                        <th>活动图片</th>
+                                        <th>活动联系人</th>
+                                        <th>联系方式</th>
+                                        <th>备注</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="data:${dataList}">
+                                    <tr>
+                                        <td>1</td>
+                                        <td th:text="${data.getName()}">...</td>
+                                        <td th:text="${data.getDate()}">...</td>
+                                        <td th:text="${data.getAddr()}">...</td>
+                                        <td th:text="${data.getNum()}">...</td>
+                                        <td><img th:src="${data.getImg()}" width="30" height="30"></td>
+                                        <td th:text="${data.getContacts()}">...</td>
+                                        <td th:text="${data.getTel()}">...</td>
+                                        <td th:text="${data.getDesc()}">...</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="footer" th:include="footer::footer"></div>
+    </div>
+</div>
+<span th:include="common_js:: commonOnLoadJs"></span>
+</body>
+</html>
