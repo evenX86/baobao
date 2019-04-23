@@ -1,6 +1,5 @@
 package com.alexura.baobao.service;
 
-import com.alexura.baobao.domain.User;
 import com.alexura.baobao.entity.UserEntity;
 
 import java.util.List;
@@ -13,6 +12,5 @@ import java.util.List;
  */
 public interface UserService {
     public void addUser(UserEntity userEntity);
-    public void addUser(User user);
     public List<UserEntity> listUser();
 }

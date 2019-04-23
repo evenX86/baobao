@@ -20,10 +20,23 @@ import java.sql.Date;
  */
 public class UserEntity {
     private Integer id;
-    private String name;
-    private String tel;
+    /**
+     * 账户名
+     */
+    private String account;
+    /**
+     *     社团名
+     */
+    private String groupName;
+    /**
+     *     联系人
+     */
+    private String userName;
+    /**
+     联系方式
+     */
+    private String userTel;
     private String passwd;
-    private Long groupId;
     private Date created;
     private Date modified;
 
@@ -35,20 +48,36 @@ public class UserEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAccount() {
+        return account;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    public String getTel() {
-        return tel;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserTel() {
+        return userTel;
+    }
+
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
     }
 
     public String getPasswd() {
@@ -57,14 +86,6 @@ public class UserEntity {
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
-    }
-
-    public Long getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
     }
 
     public Date getCreated() {

@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  * @author xuyifei
  * @date 2019-04-14 6:04 PM
  */
-//@Configuration
+@Configuration
 public class MyBatisConfig {
     @Autowired
     private DataSourceProperties dataSourceProperties;

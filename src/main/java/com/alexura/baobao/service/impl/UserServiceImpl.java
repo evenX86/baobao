@@ -1,8 +1,9 @@
 package com.alexura.baobao.service.impl;
 
-import com.alexura.baobao.domain.User;
 import com.alexura.baobao.entity.UserEntity;
+import com.alexura.baobao.mapper.UserMapper;
 import com.alexura.baobao.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ import java.util.List;
 public class UserServiceImpl  implements UserService {
     public List<UserEntity> userEntityList;
 
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public void addUser(UserEntity userEntity) {
@@ -27,16 +30,8 @@ public class UserServiceImpl  implements UserService {
         } else {
             size = userEntityList.size();
         }
-        userEntity.setId(size+1);
-        userEntityList.add(userEntity);
-    }
-
-    @Override
-    public void addUser(User user) {
-        int size = userEntityList.size();
-        UserEntity userEntity = new UserEntity();
-        userEntity.setName(user.getName());
-        userEntity.setId(size+1);
+        userMapper.insert(userEntity);
+        userEntity.setId(size + 1);
         userEntityList.add(userEntity);
     }
 

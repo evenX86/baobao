@@ -39,7 +39,6 @@ public class UserController {
 
     @PostMapping("/doAddUser")
     public String doAddUser(@ModelAttribute UserEntity userEntity) {
-        log.error("xuyifei debug doAddUser: " + JsonUtil.write2JsonStr(userEntity));
         userService.addUser(userEntity);
         return "redirect:/user/list";
     }
