@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * Created with baobao
  *
@@ -44,7 +46,9 @@ public class UserController {
     }
 
     @RequestMapping("/list")
-    public String list() {
+    public String list(Model model) {
+        List<UserEntity> userEntityList = userService.listUser();
+        model.addAttribute("dataList", userEntityList);
         return "user/list";
     }
 

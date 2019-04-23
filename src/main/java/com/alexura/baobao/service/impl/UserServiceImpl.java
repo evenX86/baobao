@@ -37,7 +37,7 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public List<UserEntity> listUser() {
-        return userEntityList;
+        return userMapper.getAll();
 
     }
 }

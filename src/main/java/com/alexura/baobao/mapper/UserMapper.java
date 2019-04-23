@@ -15,7 +15,16 @@ import java.util.List;
 public interface UserMapper {
 
 
-    @Select("SELECT * FROM alex_user")
+    @Select("SELECT id,account,user_name,user_tel,group_name,created,modified FROM alex_user")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "account", column = "account"),
+            @Result(property = "userName", column = "user_name"),
+            @Result(property = "userTel", column = "user_tel"),
+            @Result(property = "groupName", column = "group_name"),
+            @Result(property = "created", column = "created"),
+            @Result(property = "modified", column = "modified")
+    })
     List<UserEntity> getAll();
 
     @Insert("INSERT INTO alex_user(`account`,user_name,user_tel,passwd,group_name,created,modified) VALUES(#{account}, #{userName},#{userTel},#{passwd},#{groupName}, now(),now())")

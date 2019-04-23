@@ -41,7 +41,6 @@ public class LoginController {
 
     @PostMapping("/doRegister")
     public String doRegister(@ModelAttribute UserEntity userEntity, HttpSession session) {
-        log.error("xuyifei debug userEntity : " + JsonUtil.write2JsonStr(userEntity));
         userService.addUser(userEntity);
         session.setAttribute(SESSION_KEY, userEntity.getAccount());
         return "redirect:/";
