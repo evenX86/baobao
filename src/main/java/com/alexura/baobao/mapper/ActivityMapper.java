@@ -4,6 +4,7 @@ import com.alexura.baobao.entity.ActivityEntity;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with baobao
@@ -43,6 +44,7 @@ public interface ActivityMapper {
     @Select("SELECT count(DISTINCT group_name) from alex_activity")
     Long countAllGroup();
 
-
+    @Select("SELECT count(*) as cnt,group_name from alex_activity group by group_name")
+    List<Map<String, Object>> queryGroupNum();
 
 }

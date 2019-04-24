@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -29,7 +30,6 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index(HttpSession session, ModelMap model) {
-        atomicInteger.incrementAndGet();
         String account = (String) session.getAttribute(SESSION_KEY);
         model.addAttribute("name", account);
         model.addAttribute("actCnt", dataService.countAll());
@@ -37,6 +37,12 @@ public class IndexController {
         model.addAttribute("userCnt", userService.countAll());
         model.addAttribute("dataList", dataService.listActivity());
         model.addAttribute("visitCnt", atomicInteger.incrementAndGet());
+        List<Map<String, Object>> mapList = dataService.queryGroupNum();
+        int id = 1;
+        for (Map<String, Object> map : mapList) {
+            map.put("id", id ++);
+        }
+        model.addAttribute("groupDataList",  mapList);
         return "index";
     }
     @RequestMapping("/act-detail")
