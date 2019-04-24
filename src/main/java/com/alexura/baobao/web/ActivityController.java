@@ -45,7 +45,7 @@ public class ActivityController {
         if(session == null || session.getAttribute(SESSION_KEY) == null) {
             return "login";
         }
-        Integer uid = Integer.valueOf((String) session.getAttribute(SESSION_UID_KEY));
+        Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
         model.addAttribute("name", session.getAttribute(SESSION_KEY));
         UserEntity entity =  userService.getUserByAccount(uid);
         ActivityEntity activityEntity = new ActivityEntity();
