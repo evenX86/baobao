@@ -1,8 +1,10 @@
 package com.alexura.baobao.web;
 
 import com.alexura.baobao.entity.ActivityEntity;
+import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
+import com.alexura.baobao.service.UserService;
 import com.alexura.baobao.utils.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,19 +31,25 @@ public class ActivityController {
 
     @Autowired
     private DataService dataService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ImageUploadService imageUploadService;
 
     private static final String SESSION_KEY = "user";
+    private static final String SESSION_UID_KEY = "userId";
 
     @RequestMapping("addActivity")
     public String add(Model model, HttpSession session) {
         if(session == null || session.getAttribute(SESSION_KEY) == null) {
             return "login";
         }
+        Integer uid = Integer.valueOf((String) session.getAttribute(SESSION_UID_KEY));
         model.addAttribute("name", session.getAttribute(SESSION_KEY));
+        UserEntity entity =  userService.getUserByAccount(uid);
         ActivityEntity activityEntity = new ActivityEntity();
+        activityEntity.setGroupName(entity.getGroupName());
         model.addAttribute("activity", activityEntity);
         return "add-act";
     }

@@ -22,6 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Controller
 public class IndexController {
     private static final String SESSION_KEY = "user";
+    private static final String SESSION_UID_KEY = "userId";
     @Autowired
     private DataService dataService;
     @Autowired

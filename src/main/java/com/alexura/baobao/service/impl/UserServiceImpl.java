@@ -45,4 +45,10 @@ public class UserServiceImpl  implements UserService {
     public Long countAll() {
         return userMapper.countAll();
     }
+
+    @Override
+    public UserEntity getUserByAccount(Integer id) {
+        return userMapper.getUserByAccount(id);
+
+    }
 }

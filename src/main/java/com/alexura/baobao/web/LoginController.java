@@ -25,6 +25,9 @@ public class LoginController {
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
     private static final String SESSION_KEY = "user";
 
+    private static final String SESSION_UID_KEY = "userId";
+
+
     @Autowired
     private UserService userService;
 
@@ -43,6 +46,7 @@ public class LoginController {
     public String doRegister(@ModelAttribute UserEntity userEntity, HttpSession session) {
         userService.addUser(userEntity);
         session.setAttribute(SESSION_KEY, userEntity.getAccount());
+        session.setAttribute(SESSION_UID_KEY, userEntity.getId());
         return "redirect:/";
     }
 
@@ -58,6 +62,7 @@ public class LoginController {
         }
         // 设置session
         session.setAttribute(SESSION_KEY, account);
+        session.setAttribute(SESSION_UID_KEY, 1);
 
         map.put("success", true);
         map.put("message", "登录成功");

@@ -140,21 +140,11 @@
                                     <th>活动次数</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody th:each="data:${groupDataList}">
                                 <tr>
-                                    <td>1</td>
-                                    <td>温州二职篮球社</td>
-                                    <td>12</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>温州二职足球社</td>
-                                    <td>15</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>温州五中羽毛球社</td>
-                                    <td>10</td>
+                                    <td th:text="${data.get('id')}">...</td>
+                                    <td th:text="${data.get('group_name')}">...</td>
+                                    <td th:text="${data.get('cnt')}">...</td>
                                 </tr>
                                 </tbody>
                             </table>
