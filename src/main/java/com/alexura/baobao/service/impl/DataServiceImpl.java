@@ -6,7 +6,6 @@ import com.alexura.baobao.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,5 +26,16 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<ActivityEntity> listActivity() {
         return  activityMapper.getAll();
+    }
+
+    @Override
+    public Long countAll() {
+        return  activityMapper.countAll();
+
+    }
+
+    @Override
+    public Long countAllGroup() {
+        return activityMapper.countAllGroup();
     }
 }

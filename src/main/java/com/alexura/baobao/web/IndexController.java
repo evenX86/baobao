@@ -2,6 +2,7 @@ package com.alexura.baobao.web;
 
 import com.alexura.baobao.entity.ActivityEntity;
 import com.alexura.baobao.service.DataService;
+import com.alexura.baobao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created with baobao
@@ -21,12 +23,20 @@ public class IndexController {
     private static final String SESSION_KEY = "user";
     @Autowired
     private DataService dataService;
+    @Autowired
+    private UserService userService;
+    private AtomicInteger atomicInteger = new AtomicInteger();
 
     @RequestMapping("/")
     public String index(HttpSession session, ModelMap model) {
+        atomicInteger.incrementAndGet();
         String account = (String) session.getAttribute(SESSION_KEY);
         model.addAttribute("name", account);
+        model.addAttribute("actCnt", dataService.countAll());
+        model.addAttribute("grpCnt", dataService.countAllGroup());
+        model.addAttribute("userCnt", userService.countAll());
         model.addAttribute("dataList", dataService.listActivity());
+        model.addAttribute("visitCnt", atomicInteger.incrementAndGet());
         return "index";
     }
     @RequestMapping("/act-detail")

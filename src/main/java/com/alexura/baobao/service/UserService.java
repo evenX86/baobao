@@ -13,4 +13,5 @@ import java.util.List;
 public interface UserService {
     public void addUser(UserEntity userEntity);
     public List<UserEntity> listUser();
+    public Long countAll();
 }

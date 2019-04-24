@@ -40,4 +40,9 @@ public class UserServiceImpl  implements UserService {
         return userMapper.getAll();
 
     }
+
+    @Override
+    public Long countAll() {
+        return userMapper.countAll();
+    }
 }

@@ -29,4 +29,7 @@ public interface UserMapper {
 
     @Insert("INSERT INTO alex_user(`account`,user_name,user_tel,passwd,group_name,created,modified) VALUES(#{account}, #{userName},#{userTel},#{passwd},#{groupName}, now(),now())")
     void insert(UserEntity user);
+
+    @Select("select count(*) from alex_user")
+    Long countAll();
 }

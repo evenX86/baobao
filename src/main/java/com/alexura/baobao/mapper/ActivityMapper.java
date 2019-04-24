@@ -37,4 +37,12 @@ public interface ActivityMapper {
     })
     List<ActivityEntity> getAll();
 
+    @Select("select count(*) from alex_activity")
+    Long countAll();
+
+    @Select("SELECT count(DISTINCT group_name) from alex_activity")
+    Long countAllGroup();
+
+
+
 }

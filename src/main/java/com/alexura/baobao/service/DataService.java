@@ -13,4 +13,6 @@ import java.util.List;
 public interface DataService {
     public void addActivity(ActivityEntity activity);
     public List<ActivityEntity> listActivity();
+    public Long countAll();
+    public Long countAllGroup();
 }
