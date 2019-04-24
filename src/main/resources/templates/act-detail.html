@@ -75,13 +75,13 @@
                                     <tbody th:each="data:${dataList}">
                                     <tr>
                                         <td>1</td>
-                                        <td th:text="${data.getName()}">...</td>
-                                        <td th:text="${data.getDate()}">...</td>
-                                        <td th:text="${data.getAddr()}">...</td>
-                                        <td th:text="${data.getNum()}">...</td>
-                                        <td><img th:src="${data.getImg()}" width="30" height="30"></td>
-                                        <td th:text="${data.getContacts()}">...</td>
-                                        <td th:text="${data.getTel()}">...</td>
+                                        <td th:text="${data.getGroupName()}">...</td>
+                                        <td th:text="${data.getActDate()}">...</td>
+                                        <td th:text="${data.getActAddr()}">...</td>
+                                        <td th:text="${data.getActPeopleNum()}">...</td>
+                                        <td><img th:src="${data.getActImg1()}" width="30" height="30"></td>
+                                        <td th:text="${data.getActUser()}">...</td>
+                                        <td th:text="${data.getActUserTel()}">...</td>
                                         <td th:text="${data.getDesc()}">...</td>
                                     </tr>
                                     </tbody>

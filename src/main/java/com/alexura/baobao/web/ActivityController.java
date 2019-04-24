@@ -1,13 +1,15 @@
 package com.alexura.baobao.web;
 
-import com.alexura.baobao.domain.Activity;
+import com.alexura.baobao.entity.ActivityEntity;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
+import com.alexura.baobao.utils.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,19 +40,39 @@ public class ActivityController {
         if(session == null || session.getAttribute(SESSION_KEY) == null) {
             return "login";
         }
-        model.addAttribute("name", "admin");
+        model.addAttribute("name", session.getAttribute(SESSION_KEY));
+        ActivityEntity activityEntity = new ActivityEntity();
+        model.addAttribute("activity", activityEntity);
         return "add-act";
     }
     @PostMapping("/saveActivity")
-    public String saveActivity(String name, String addr, String num, String contacts, String tel, String desc, MultipartFile file1, String date) {
+    public String saveActivity(@ModelAttribute ActivityEntity activityEntity, MultipartFile file1,
+                               MultipartFile file2, MultipartFile file3, MultipartFile file4) {
 
+        log.error("xuyifei debug activity : " + JsonUtil.write2JsonStr(activityEntity));
         // 服务器上上传文件的相对路径
-        String uploadPath = "static/img/";
+        String uploadPath = "static/img";
         // 服务器上上传文件的物理路径
         String path = getClass().getClassLoader().getResource(uploadPath).getPath();
-        String imageURL = imageUploadService.uploadImage( file1, uploadPath, path);
-        Activity activity = new Activity(name,addr, num, contacts,tel, desc, imageURL, date);
-        dataService.addActivity(activity);
-        return "redirect:/";
+        log.error("xuyifei debug path : " + path);
+        if (file1 != null && !file1.isEmpty()) {
+            String imageURL1 = imageUploadService.uploadImage( file1, uploadPath, path);
+            activityEntity.setActImg1(imageURL1);
+        }
+        if (file2 != null && !file2.isEmpty()) {
+            String imageURL2 = imageUploadService.uploadImage( file2, uploadPath, path);
+            activityEntity.setActImg2(imageURL2);
+        }
+        if (file3 != null && !file3.isEmpty()) {
+            String imageURL3 = imageUploadService.uploadImage( file3, uploadPath, path);
+            activityEntity.setActImg3(imageURL3);
+        }
+        if (file4 != null && !file4.isEmpty()) {
+            String imageURL4 = imageUploadService.uploadImage( file4, uploadPath, path);
+            activityEntity.setActImg4(imageURL4);
+        }
+        log.error("xuyifei debug activityEntity : " + JsonUtil.write2JsonStr(activityEntity));
+        dataService.addActivity(activityEntity);
+        return "redirect:/act-detail";
     }
 }

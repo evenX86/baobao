@@ -1,6 +1,6 @@
 package com.alexura.baobao.service;
 
-import com.alexura.baobao.domain.Activity;
+import com.alexura.baobao.entity.ActivityEntity;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ import java.util.List;
  * @date 2019-04-17 9:56 PM
  */
 public interface DataService {
-    public void addActivity(Activity activity);
-    public List<Activity> listActivity();
+    public void addActivity(ActivityEntity activity);
+    public List<ActivityEntity> listActivity();
 }

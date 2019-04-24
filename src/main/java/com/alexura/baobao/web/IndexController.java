@@ -1,5 +1,6 @@
 package com.alexura.baobao.web;
 
+import com.alexura.baobao.entity.ActivityEntity;
 import com.alexura.baobao.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created with baobao
@@ -29,6 +31,8 @@ public class IndexController {
     }
     @RequestMapping("/act-detail")
     public String index(ModelMap model) {
+        List<ActivityEntity> activityEntityList = dataService.listActivity();
+        model.addAttribute("dataList", activityEntityList);
         return "act-detail";
     }
 }

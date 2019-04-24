@@ -1,10 +1,10 @@
 package com.alexura.baobao.service.impl;
 
-import com.alexura.baobao.domain.Activity;
+import com.alexura.baobao.entity.ActivityEntity;
+import com.alexura.baobao.mapper.ActivityMapper;
 import com.alexura.baobao.service.DataService;
-import javafx.scene.chart.PieChart;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +17,15 @@ import java.util.List;
  */
 @Service
 public class DataServiceImpl implements DataService {
-
-    private List<Activity> activityList = new ArrayList<>();
-
+    @Autowired
+    private ActivityMapper activityMapper;
     @Override
-    public void addActivity(Activity activity) {
-        if (activityList == null) {
-            activityList = new ArrayList<>();
-        }
-        int size = activityList.size();
-        activity.setId(size+1);
-        activityList.add(activity);
+    public void addActivity(ActivityEntity activity) {
+        activityMapper.insert(activity);
     }
 
     @Override
-    public List<Activity> listActivity() {
-        return activityList;
+    public List<ActivityEntity> listActivity() {
+        return  activityMapper.getAll();
     }
 }

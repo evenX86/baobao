@@ -1,10 +1,7 @@
 package com.alexura.baobao.web;
 
-import com.alexura.baobao.domain.Activity;
-import com.alexura.baobao.domain.User;
 import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.UserService;
-import com.alexura.baobao.utils.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
