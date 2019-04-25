@@ -56,5 +56,5 @@ public interface UserMapper {
             @Result(property = "created", column = "created"),
             @Result(property = "modified", column = "modified")
     })
-    UserEntity getUserByAccountAndPasswd(String account, String passwd);
+    UserEntity getUserByAccountAndPasswd(@Param("account") String account, @Param("passwd") String passwd);
 }
