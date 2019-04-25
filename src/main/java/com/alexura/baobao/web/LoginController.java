@@ -55,7 +55,12 @@ public class LoginController {
         Map<String, Object> map = new HashMap<>();
         log.error("xuyifei debug account : " + account);
         log.error("xuyifei debug passwd : " + passwd);
-        if (!"123456".equals(passwd)) {
+        UserEntity userEntity = userService.login(account, passwd);
+        if (userEntity != null) {
+            // 设置session
+            session.setAttribute(SESSION_KEY, userEntity.getAccount());
+            session.setAttribute(SESSION_UID_KEY, userEntity.getId());
+        } else {
             map.put("success", false);
             map.put("message", "密码错误");
             return login();

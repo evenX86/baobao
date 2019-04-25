@@ -64,9 +64,12 @@ public class ActivityController {
     }
     @PostMapping("/saveActivity")
     public String saveActivity(@ModelAttribute ActivityEntity activityEntity, MultipartFile file1,
-                               MultipartFile file2, MultipartFile file3, MultipartFile file4) {
+                               MultipartFile file2, MultipartFile file3, MultipartFile file4, HttpSession session) {
 
         log.error("xuyifei debug activity : " + JsonUtil.write2JsonStr(activityEntity));
+        Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
+        UserEntity entity =  userService.getUserByAccount(uid);
+        activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
         // 服务器上上传文件的相对路径
         String uploadPath = "static/img";
         // 服务器上上传文件的物理路径

@@ -51,4 +51,10 @@ public class UserServiceImpl  implements UserService {
         return userMapper.getUserByAccount(id);
 
     }
+
+    @Override
+    public UserEntity login(String account, String passwd) {
+        return userMapper.getUserByAccountAndPasswd(account, passwd);
+
+    }
 }
