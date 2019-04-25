@@ -6,6 +6,7 @@ import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
 import com.alexura.baobao.service.UserService;
 import com.alexura.baobao.utils.JsonUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,16 @@ public class ActivityController {
         model.addAttribute("name", session.getAttribute(SESSION_KEY));
         UserEntity entity =  userService.getUserByAccount(uid);
         ActivityEntity activityEntity = new ActivityEntity();
-        activityEntity.setGroupName(entity.getGroupName());
+        if (entity == null) {
+            activityEntity.setGroupName("默认社团");
+        } else {
+            activityEntity.setGroupName(entity.getGroupName());
+            if (StringUtils.isBlank(entity.getGroupName())) {
+                activityEntity.setGroupName("默认社团");
+            }
+        }
         model.addAttribute("activity", activityEntity);
+        model.addAttribute("groupName", activityEntity.getGroupName());
         return "add-act";
     }
     @PostMapping("/saveActivity")
