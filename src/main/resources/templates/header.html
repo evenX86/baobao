@@ -34,11 +34,14 @@
                              </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs" th:text="${name}"> <strong class="font-bold"></strong>
-                             </span> <span class="text-muted text-xs block">管理员 </span> </span> </a>
+                             </span>
+                                <span class="text-muted text-xs block" th:if="${name=='admin'}">管理员 </span>
+                                <span class="text-muted text-xs block" th:unless="${name=='admin'}">普通用户 </span>
+                            </span> </a>
                 </div>
             </li>
             <li th:class="${menu=='statistics'}?'active':''">
-                <a href="/"><i class="fa fa-database"></i>
+                <a href="/" th:if="${name=='admin'}"><i class="fa fa-database"></i>
                     <span class="nav-label">数据统计</span>
                 </a>
             </li>
@@ -56,12 +59,10 @@
                 <a href="#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li th:class="${menu=='userList'}?'active':''">
-                        <a href="/user/list">
-                            <span class="nav-label">用户统计</span>
+                        <a href="/user/list" th:text="用户统计">
                         </a></li>
                     <li th:class="${menu=='userAdd'}?'active':''">
-                        <a href="/user/add">
-                            <span class="nav-label">用户添加</span>
+                        <a href="/user/add" th:text="用户添加">
                         </a></li>
                 </ul>
             </li>

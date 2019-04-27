@@ -48,7 +48,9 @@ public class ActivityController {
         }
         Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
         model.addAttribute("name", session.getAttribute(SESSION_KEY));
+        log.error("xuyifei debug uid: : " + uid);
         UserEntity entity =  userService.getUserByAccount(uid);
+        log.error("xuyifei debug entity: : " + JsonUtil.write2JsonStr(entity));
         ActivityEntity activityEntity = new ActivityEntity();
         if (entity == null) {
             activityEntity.setGroupName("默认社团");
@@ -58,6 +60,7 @@ public class ActivityController {
                 activityEntity.setGroupName("默认社团");
             }
         }
+        log.error("activity name : " + entity.getGroupName());
         model.addAttribute("activity", activityEntity);
         model.addAttribute("groupName", activityEntity.getGroupName());
         return "add-act";

@@ -56,6 +56,7 @@ public class LoginController {
         log.error("xuyifei debug account : " + account);
         log.error("xuyifei debug passwd : " + passwd);
         UserEntity userEntity = userService.login(account, passwd);
+        log.error("xuyifei debug user query : " + JsonUtil.write2JsonStr(userEntity));
         if (userEntity != null) {
             // 设置session
             session.setAttribute(SESSION_KEY, userEntity.getAccount());
@@ -65,10 +66,6 @@ public class LoginController {
             map.put("message", "密码错误");
             return login();
         }
-        // 设置session
-        session.setAttribute(SESSION_KEY, account);
-        session.setAttribute(SESSION_UID_KEY, 1);
-
         map.put("success", true);
         map.put("message", "登录成功");
         return "redirect:/";
