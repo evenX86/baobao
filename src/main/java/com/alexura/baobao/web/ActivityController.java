@@ -5,7 +5,6 @@ import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
 import com.alexura.baobao.service.UserService;
-import com.alexura.baobao.utils.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,14 +42,8 @@ public class ActivityController {
 
     @RequestMapping("addActivity")
     public String add(Model model, HttpSession session) {
-        if(session == null || session.getAttribute(SESSION_KEY) == null) {
-            return "login";
-        }
         Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
-        model.addAttribute("name", session.getAttribute(SESSION_KEY));
-        log.error("xuyifei debug uid: : " + uid);
         UserEntity entity =  userService.getUserByAccount(uid);
-        log.error("xuyifei debug entity: : " + JsonUtil.write2JsonStr(entity));
         ActivityEntity activityEntity = new ActivityEntity();
         if (entity == null) {
             activityEntity.setGroupName("默认社团");
@@ -60,7 +53,6 @@ public class ActivityController {
                 activityEntity.setGroupName("默认社团");
             }
         }
-        log.error("activity name : " + entity.getGroupName());
         model.addAttribute("activity", activityEntity);
         model.addAttribute("groupName", activityEntity.getGroupName());
         return "add-act";
@@ -69,7 +61,6 @@ public class ActivityController {
     public String saveActivity(@ModelAttribute ActivityEntity activityEntity, MultipartFile file1,
                                MultipartFile file2, MultipartFile file3, MultipartFile file4, HttpSession session) {
 
-        log.error("xuyifei debug activity : " + JsonUtil.write2JsonStr(activityEntity));
         Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
         UserEntity entity =  userService.getUserByAccount(uid);
         activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
@@ -77,7 +68,6 @@ public class ActivityController {
         String uploadPath = "static/img";
         // 服务器上上传文件的物理路径
         String path = getClass().getClassLoader().getResource(uploadPath).getPath();
-        log.error("xuyifei debug path : " + path);
         if (file1 != null && !file1.isEmpty()) {
             String imageURL1 = imageUploadService.uploadImage( file1, uploadPath, path);
             activityEntity.setActImg1(imageURL1);
@@ -94,7 +84,6 @@ public class ActivityController {
             String imageURL4 = imageUploadService.uploadImage( file4, uploadPath, path);
             activityEntity.setActImg4(imageURL4);
         }
-        log.error("xuyifei debug activityEntity : " + JsonUtil.write2JsonStr(activityEntity));
         dataService.addActivity(activityEntity);
         return "redirect:/act-detail";
     }
