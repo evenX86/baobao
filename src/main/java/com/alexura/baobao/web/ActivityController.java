@@ -60,7 +60,9 @@ public class ActivityController {
     @PostMapping("/saveActivity")
     public String saveActivity(@ModelAttribute ActivityEntity activityEntity, MultipartFile file1,
                                MultipartFile file2, MultipartFile file3, MultipartFile file4, HttpSession session) {
-
+        if (StringUtils.isBlank(activityEntity.getActDate())) {
+            return "redirect:/add-act";
+        }
         Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
         UserEntity entity =  userService.getUserByAccount(uid);
         activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
