@@ -36,11 +36,18 @@
 
     <!-- Sparkline demo data  -->
     <script th:src="@{/static/js/demo/sparkline-demo.js}"></script>
+
+    <script th:src="@{/static/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+
 <script>
     $(document).ready(function () {
+        $.fn.datepicker.defaults.format = "yyyy-mm-dd";
+        $('.datepicker').datepicker({
+            startDate: '-3d'
+        })
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
+            radioClass: 'iradio_square-green'
         });
     });
 </script>

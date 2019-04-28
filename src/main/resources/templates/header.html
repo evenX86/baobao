@@ -35,13 +35,13 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs" th:text="${#session.getAttribute('user')}"> <strong class="font-bold"></strong>
                              </span>
-                                <span class="text-muted text-xs block" th:if="${name=='admin'}">管理员 </span>
-                                <span class="text-muted text-xs block" th:unless="${name=='admin'}">普通用户 </span>
+                                <span class="text-muted text-xs block" th:if="${session.user == 'admin'}">管理员 </span>
+                                <span class="text-muted text-xs block" th:unless="${session.user == 'admin'}">普通用户 </span>
                             </span> </a>
                 </div>
             </li>
             <li th:class="${menu=='statistics'}?'active':''">
-                <a href="/" th:if="${name=='admin'}"><i class="fa fa-database"></i>
+                <a href="/"><i class="fa fa-database"></i>
                     <span class="nav-label">数据统计</span>
                 </a>
             </li>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li th:class="${#strings.contains(menu,'user')}?'active':''">
-                <a href="#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+                <a href="#" th:if="${session.user == 'admin'}"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li th:class="${menu=='userList'}?'active':''">
                         <a href="/user/list" th:text="用户统计">
