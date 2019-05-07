@@ -3,10 +3,10 @@ package com.alexura.baobao.service.impl;
 import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.mapper.UserMapper;
 import com.alexura.baobao.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,22 +17,13 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl  implements UserService {
-    public List<UserEntity> userEntityList;
-
+    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
     private UserMapper userMapper;
 
     @Override
     public void addUser(UserEntity userEntity) {
-        int size = 1;
-        if (userEntityList == null) {
-            userEntityList = new ArrayList<>();
-        } else {
-            size = userEntityList.size();
-        }
         userMapper.insert(userEntity);
-        userEntity.setId(size + 1);
-        userEntityList.add(userEntity);
     }
 
     @Override
