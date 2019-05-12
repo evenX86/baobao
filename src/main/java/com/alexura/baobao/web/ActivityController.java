@@ -71,19 +71,19 @@ public class ActivityController {
         // 服务器上上传文件的物理路径
         String path = getClass().getClassLoader().getResource(uploadPath).getPath();
         if (file1 != null && !file1.isEmpty()) {
-            String imageURL1 = imageUploadService.uploadImage( file1, uploadPath, path);
+            String imageURL1 = imageUploadService.uploadImage( file1, uploadPath, path, entity.getId());
             activityEntity.setActImg1(imageURL1);
         }
         if (file2 != null && !file2.isEmpty()) {
-            String imageURL2 = imageUploadService.uploadImage( file2, uploadPath, path);
+            String imageURL2 = imageUploadService.uploadImage( file2, uploadPath, path, entity.getId());
             activityEntity.setActImg2(imageURL2);
         }
         if (file3 != null && !file3.isEmpty()) {
-            String imageURL3 = imageUploadService.uploadImage( file3, uploadPath, path);
+            String imageURL3 = imageUploadService.uploadImage( file3, uploadPath, path, entity.getId());
             activityEntity.setActImg3(imageURL3);
         }
         if (file4 != null && !file4.isEmpty()) {
-            String imageURL4 = imageUploadService.uploadImage( file4, uploadPath, path);
+            String imageURL4 = imageUploadService.uploadImage( file4, uploadPath, path, entity.getId());
             activityEntity.setActImg4(imageURL4);
         }
         dataService.addActivity(activityEntity);

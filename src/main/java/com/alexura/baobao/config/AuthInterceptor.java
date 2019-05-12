@@ -1,9 +1,5 @@
 package com.alexura.baobao.config;
 
-import com.alexura.baobao.core.Result;
-import com.alexura.baobao.enums.ResultCode;
-import com.alexura.baobao.utils.JsonUtil;
-import com.alexura.baobao.utils.ResultUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

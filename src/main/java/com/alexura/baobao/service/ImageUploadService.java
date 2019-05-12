@@ -9,6 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-04-17 10:32 PM
  */
 public interface ImageUploadService {
-    public String uploadImage(MultipartFile file, String uploadPath, String physicalUploadPath );
+    public String uploadImage(MultipartFile file, String uploadPath, String physicalUploadPath,Integer uid );
 }
 

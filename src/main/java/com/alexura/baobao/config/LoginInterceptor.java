@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
-    private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
     private static final String SESSION_KEY = "user";
 
     @Override
@@ -25,8 +25,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) throws Exception {
 
         String user = (String) request.getSession().getAttribute(SESSION_KEY);
-        logger.info(request.getRequestURI());
-        if (user == null || user.equals(""))  {
+        logger.error(request.getRequestURI());
+        if (user == null || "".equals(user))  {
             response.sendRedirect("/login");
             logger.info("请先登录");
             return false;
@@ -36,11 +36,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        logger.info("postHandle...");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        logger.info("afterCompletion...");
     }
 }
