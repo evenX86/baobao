@@ -1,11 +1,14 @@
 package com.alexura.baobao.web;
 
 import com.alexura.baobao.entity.ActivityEntity;
+import com.alexura.baobao.entity.Person;
 import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
 import com.alexura.baobao.service.UserService;
+import com.alexura.baobao.utils.ExcelUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created with baobao
@@ -57,6 +66,16 @@ public class ActivityController {
         model.addAttribute("groupName", activityEntity.getGroupName());
         return "add-act";
     }
+
+    @RequestMapping("exportActivity")
+    public void export(HttpServletResponse response, HttpSession session) {
+        List<ActivityEntity> activityEntityList = dataService.listActivity();
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String datetime = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
+        ExcelUtils.exportExcel(activityEntityList, "社团活动信息","活动", ActivityEntity.class, "活动记录"+datetime+".xls", response);
+    }
+
+
     @PostMapping("/saveActivity")
     public String saveActivity(@ModelAttribute ActivityEntity activityEntity, MultipartFile file1,
                                MultipartFile file2, MultipartFile file3, MultipartFile file4, HttpSession session) {

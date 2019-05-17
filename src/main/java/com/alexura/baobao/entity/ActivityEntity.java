@@ -1,5 +1,7 @@
 package com.alexura.baobao.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 import java.util.Date;
 
 /**
@@ -9,18 +11,31 @@ import java.util.Date;
  * @date 2019-04-17 9:57 PM
  */
 public class ActivityEntity {
+    @Excel(name = "活动ID", orderNum = "0")
     private Integer id;
+    @Excel(name = "组织名", orderNum = "1")
     private String groupName;
+    @Excel(name = "活动地址", orderNum = "2")
     private String actAddr;
+    @Excel(name = "活动日期", exportFormat = "yyyy-MM-dd", orderNum = "3")
     private String actDate;
+    @Excel(name = "活动人数", orderNum = "4")
     private String actPeopleNum;
+    @Excel(name = "联系方式", orderNum = "5")
     private String actUserTel;
+    @Excel(name = "联系人", orderNum = "6")
     private String actUser;
+    @Excel(name = "活动备注", orderNum = "7")
     private String desc;
+    @Excel(name = "活动图片1", orderNum = "8")
     private String actImg1;
+    @Excel(name = "活动图片2", orderNum = "9")
     private String actImg2;
+    @Excel(name = "活动图片3", orderNum = "10")
     private String actImg3;
+    @Excel(name = "活动图片4", orderNum = "11")
     private String actImg4;
+    @Excel(name = "记录创建时间",exportFormat = "yyyy-MM-dd hh:mm:ss", orderNum = "12")
     private Date created;
     private Date modified;
 

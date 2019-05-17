@@ -1,5 +1,7 @@
 package com.alexura.baobao.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 import java.sql.Date;
 
 /**
@@ -23,14 +25,17 @@ public class UserEntity {
     /**
      * 账户名
      */
+    @Excel(name = "账号名", orderNum = "0")
     private String account;
     /**
      *     社团名
      */
+    @Excel(name = "所属组织", orderNum = "1")
     private String groupName;
     /**
      *     联系人
      */
+    @Excel(name = "联系人", orderNum = "1")
     private String userName;
     /**
      联系方式
