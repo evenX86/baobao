@@ -27,13 +27,9 @@ public class ActivityEntity {
     private String actUser;
     @Excel(name = "活动备注", orderNum = "7")
     private String desc;
-    @Excel(name = "活动图片1", orderNum = "8")
     private String actImg1;
-    @Excel(name = "活动图片2", orderNum = "9")
     private String actImg2;
-    @Excel(name = "活动图片3", orderNum = "10")
     private String actImg3;
-    @Excel(name = "活动图片4", orderNum = "11")
     private String actImg4;
     @Excel(name = "记录创建时间",exportFormat = "yyyy-MM-dd hh:mm:ss", orderNum = "12")
     private Date created;
