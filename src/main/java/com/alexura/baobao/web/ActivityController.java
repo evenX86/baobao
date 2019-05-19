@@ -1,31 +1,29 @@
 package com.alexura.baobao.web;
 
 import com.alexura.baobao.entity.ActivityEntity;
-import com.alexura.baobao.entity.Person;
 import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
 import com.alexura.baobao.service.UserService;
 import com.alexura.baobao.utils.ExcelUtils;
+import com.alexura.baobao.utils.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with baobao
@@ -79,7 +77,7 @@ public class ActivityController {
     @PostMapping("/saveActivity")
     public String saveActivity(@ModelAttribute ActivityEntity activityEntity, MultipartFile file1,
                                MultipartFile file2, MultipartFile file3, MultipartFile file4, HttpSession session) {
-        if (StringUtils.isBlank(activityEntity.getActDate())) {
+        if (activityEntity.getActDate() == null) {
             return "redirect:/add-act";
         }
         Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
@@ -107,5 +105,45 @@ public class ActivityController {
         }
         dataService.addActivity(activityEntity);
         return "redirect:/act-detail";
+    }
+    @PostMapping("/activityData")
+    @ResponseBody
+    public ResponseEntity<?> activityData() {
+        List<ActivityEntity> activityEntityList = dataService.listActivity();
+        List<String> dateList = new ArrayList<>(30);
+        List<Integer> actList = new ArrayList<>(30);
+        List<Integer> groupList = new ArrayList<>(30);
+        Map<String, Map<String, Integer>> numMap = new HashMap<>();
+        for (ActivityEntity activityEntity : activityEntityList) {
+            String actDate = activityEntity.getActDate();
+            actDate = actDate.replace(" 00:00:00","");
+            if (numMap.containsKey(actDate)) {
+                Map<String,Integer> tmpMap = numMap.get(actDate);
+                tmpMap.put("act", tmpMap.get("act")+1);
+                tmpMap.put("grp", tmpMap.get("grp")+1);
+            } else {
+                Map<String,Integer> tmpMap = new HashMap<>();
+                tmpMap.put("act", 1);
+                tmpMap.put("grp", 1);
+                numMap.put(actDate, tmpMap);
+            }
+        }
+        for (int i=30;i>0;i--) {
+            Date date = DateUtils.addDays(new Date(), -i);
+            String dateWithFormat = DateFormatUtils.format(date, "yyyy-MM-dd");
+            dateList.add(dateWithFormat);
+            if (numMap.containsKey(dateWithFormat)) {
+                actList.add(numMap.get(dateWithFormat).get("act"));
+                groupList.add(numMap.get(dateWithFormat).get("grp"));
+            } else {
+                actList.add(0);
+                groupList.add(0);
+            }
+        }
+        Map<String, Object> result = new HashMap<>();
+        result.put("date", dateList);
+        result.put("act", actList);
+        result.put("grp", groupList);
+        return ResponseEntity.ok(result);
     }
 }
