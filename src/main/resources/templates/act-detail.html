@@ -75,12 +75,15 @@
                                     </thead>
                                     <tbody th:each="data:${dataList}">
                                     <tr>
-                                        <td>1</td>
+                                        <td th:text="${data.getId()}"></td>
                                         <td th:text="${data.getGroupName()}">...</td>
                                         <td th:text="${data.getActDate()}">...</td>
                                         <td th:text="${data.getActAddr()}">...</td>
                                         <td th:text="${data.getActPeopleNum()}">...</td>
-                                        <td><img th:src="${data.getActImg1()}" width="30" height="30"></td>
+                                        <td>
+                                            <img th:src="${data.getActImg1()}" width="30" height="30" onmouseover="showBigImg()">
+                                            <img th:src="${data.getActImg1()}" width="100" height="100" style="display: none" onmouseout="hideBigImg()">
+                                        </td>
                                         <td th:text="${data.getActUser()}">...</td>
                                         <td th:text="${data.getActUserTel()}">...</td>
                                         <td th:text="${data.getDesc()}">...</td>
@@ -102,6 +105,15 @@
 <script>
     function downloadExl() {
         window.location.href="/activity/exportActivity";
+    }
+    function showBigImg() {
+        console.log(event);
+        console.log(event.srcElement.parentElement.children[1]);
+        $(event.srcElement.parentElement.children[1]).css("display","block");
+
+    }
+    function hideBigImg() {
+        $(event.srcElement).css("display", "none");
     }
 </script>
 </body>
