@@ -57,4 +57,16 @@ public interface UserMapper {
             @Result(property = "modified", column = "modified")
     })
     UserEntity getUserByAccountAndPasswd(@Param("account") String account, @Param("passwd") String passwd);
+
+    @Select("SELECT id,account,user_name,user_tel,group_name,created,modified FROM alex_user where account =#{account}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "account", column = "account"),
+            @Result(property = "userName", column = "user_name"),
+            @Result(property = "userTel", column = "user_tel"),
+            @Result(property = "groupName", column = "group_name"),
+            @Result(property = "created", column = "created"),
+            @Result(property = "modified", column = "modified")
+    })
+    UserEntity findUserByAccount(@Param("account") String account);
 }

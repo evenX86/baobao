@@ -23,6 +23,10 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public void addUser(UserEntity userEntity) {
+        UserEntity old = getUserByAccount(userEntity.getAccount());
+        if (old != null) {
+            return;
+        }
         userMapper.insert(userEntity);
     }
 
@@ -40,6 +44,11 @@ public class UserServiceImpl  implements UserService {
     @Override
     public UserEntity getUserByAccount(Integer id) {
         return userMapper.getUserByAccount(id);
+
+    }
+
+    private UserEntity getUserByAccount(String account) {
+        return userMapper.findUserByAccount(account);
 
     }
 
