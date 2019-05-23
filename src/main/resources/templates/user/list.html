@@ -60,7 +60,6 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-
                                         <th>用户id</th>
                                         <th>用户名</th>
                                         <th>联系人 </th>
@@ -107,28 +106,29 @@
                 <h4 class="modal-title" id="gridSystemModalLabel">修改用户信息</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" action="/user/edit" id="editForm" autocomplete="off">
                     <div class="form-group">
                         <label for="account" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="account" disabled>
+                        <input type="text" class="form-control" id="account" name="account" disabled>
                     </div>
                     <div class="form-group">
                         <label for="lianxiren" class="control-label">联系人:</label>
-                        <input class="form-control" id="lianxiren" type="text">
+                        <input class="form-control" name="userName" id="lianxiren" type="text" autocomplete="off" >
                     </div>
                     <div class="form-group">
                         <label for="lianxifangshi" class="control-label">联系方式:</label>
-                        <input class="form-control" id="lianxifangshi" type="text">
+                        <input class="form-control" id="lianxifangshi" name="userTel" type="text" autocomplete="off" >
                     </div>
                     <div class="form-group">
                         <label for="passwd" class="control-label">密码重置:</label>
-                        <input class="form-control" id="passwd" type="text">
+                        <input class="form-control" id="passwd" name="passwd" type="password" autocomplete="off" >
                     </div>
+                    <input class="form-control" id="uid" name="uid" type="text" hidden>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-primary" onclick="doSubmit()">保存</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -158,9 +158,9 @@
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this);
 
-        modal.find('.modal-body #account').val(account)
-        modal.find('.modal-body input').val();
-    })
+        modal.find('.modal-body #account').val(account);
+        modal.find('.modal-body #uid').val(userId);
+    });
 
     $(document).on('show.bs.modal','.bs-example-modal-lg-1', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
@@ -174,6 +174,9 @@
         modal.find('.modal-body #account').val(account);
         modal.find('.modal-body input').val()
     })
+    function doSubmit() {
+        $("#editForm").submit();
+    }
 </script>
 </body>
 </html>
