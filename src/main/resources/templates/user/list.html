@@ -81,8 +81,10 @@
                                         <td th:text="${data.getCreated()}">...</td>
                                         <td th:text="${data.getModified()}">...</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" th:data="${data.getId()}" data-target=".bs-example-modal-lg">编辑</button>
+                                            <button type="button" class="btn btn-primary alex-user-edit" data-toggle="modal" th:attr="data-userId=${data.getId()}, data-account=${data.getAccount()}" data-target=".bs-example-modal-lg">编辑</button>
+                                            <button type="button" class="btn btn-danger alex-user-del" data-toggle="modal" th:attr="data-userId=${data.getId()}, data-account=${data.getAccount()}" data-target=".bs-example-modal-lg-1">删除</button>
                                         </td>
+
                                     </tr>
                                     </tbody>
                                 </table>
@@ -107,8 +109,8 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">用户名:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label for="account" class="control-label">用户名:</label>
+                        <input type="text" class="form-control" id="account" disabled>
                     </div>
                     <div class="form-group">
                         <label for="lianxiren" class="control-label">联系人:</label>
@@ -131,6 +133,47 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div class="modal fade bs-example-modal-lg-1" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel-1">用户删除</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger">确认删除</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <span th:include="common_js:: commonOnLoadJs"></span>
+<script>
+    $(document).on('show.bs.modal','.bs-example-modal-lg', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var userId = button.data('userid'); // Extract info from data-* attributes
+        var account = button.data('account'); // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+
+        modal.find('.modal-body #account').val(account)
+        modal.find('.modal-body input').val();
+    })
+
+    $(document).on('show.bs.modal','.bs-example-modal-lg-1', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var userId = button.data('userid'); // Extract info from data-* attributes
+        var account = button.data('account'); // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        console.log(modal);
+
+        modal.find('.modal-body #account').val(account);
+        modal.find('.modal-body input').val()
+    })
+</script>
 </body>
 </html>
