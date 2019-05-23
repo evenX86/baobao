@@ -48,4 +48,12 @@ public class UserController {
         return "user/list";
     }
 
+    @RequestMapping("/edit")
+    public String edit(String uid,String userName,String userTel,String passwd, Model model) {
+        log.error("xuyifei debug account : " + uid);
+        log.error("xuyifei debug account : " + userTel);
+        log.error("xuyifei debug account : " + userName);
+        log.error("xuyifei debug account : " + passwd);
+        return list(model);
+    }
 }
