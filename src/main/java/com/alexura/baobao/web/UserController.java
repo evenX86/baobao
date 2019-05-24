@@ -49,11 +49,13 @@ public class UserController {
     }
 
     @RequestMapping("/edit")
-    public String edit(String uid,String userName,String userTel,String passwd, Model model) {
-        log.error("xuyifei debug account : " + uid);
-        log.error("xuyifei debug account : " + userTel);
-        log.error("xuyifei debug account : " + userName);
-        log.error("xuyifei debug account : " + passwd);
+    public String edit(String uid,String userTel,String passwd, Model model) {
+        Integer uuid = Integer.valueOf(uid);
+        UserEntity userEntity =  userService.getUserByAccount(uuid);
+        if (userEntity == null) {
+            log.error("用户不存在: " + uid);
+
+        }
         return list(model);
     }
 }

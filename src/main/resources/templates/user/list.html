@@ -123,7 +123,7 @@
                         <label for="passwd" class="control-label">密码重置:</label>
                         <input class="form-control" id="passwd" name="passwd" type="password" autocomplete="off" >
                     </div>
-                    <input class="form-control" id="uid" name="uid" type="text" hidden>
+                    <input class="form-control" id="uid" name="uid" type="text" hidden="hidden">
                 </form>
             </div>
             <div class="modal-footer">
@@ -175,7 +175,10 @@
         modal.find('.modal-body input').val()
     })
     function doSubmit() {
-        $("#editForm").submit();
+        var account = $("#passwd").val();
+        var account = $("#lianxiren").val();
+        var account = $("#lianxifangshi").val();
+        var uid = $("#uid").val();
     }
 </script>
 </body>

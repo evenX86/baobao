@@ -21,11 +21,17 @@ public class ActivityEntity {
     private String actDate;
     @Excel(name = "活动人数", orderNum = "4")
     private String actPeopleNum;
-    @Excel(name = "联系方式", orderNum = "5")
+    @Excel(name = "结对社区", orderNum = "5")
+    private String community;
+    @Excel(name = "结对项目", orderNum = "6")
+    private String project;
+    @Excel(name = "活动简介", orderNum = "7")
+    private String introduce;
+    @Excel(name = "联系方式", orderNum = "8")
     private String actUserTel;
-    @Excel(name = "联系人", orderNum = "6")
+    @Excel(name = "联系人", orderNum = "9")
     private String actUser;
-    @Excel(name = "活动备注", orderNum = "7")
+    @Excel(name = "活动备注", orderNum = "10")
     private String desc;
     private String actImg1;
     private String actImg2;
@@ -149,5 +155,29 @@ public class ActivityEntity {
 
     public void setModified(Date modified) {
         this.modified = modified;
+    }
+
+    public String getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(String community) {
+        this.community = community;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 }
