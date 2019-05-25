@@ -20,7 +20,7 @@ public interface UserMapper {
 
     Long countAll();
 
-    UserEntity getUserByAccount(Integer id);
+    UserEntity getUserByAccount(@Param("id") Integer id);
 
 
     UserEntity getUserByAccountAndPasswd(@Param("account") String account, @Param("passwd") String passwd);

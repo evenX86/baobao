@@ -29,6 +29,13 @@
         WHERE `account` = #{account} and passwd=#{passwd}
     </select>
 
+    <select id="getUserByAccount" parameterType="map" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM alex_user
+        WHERE id=#{id}
+    </select>
+
     <select id="countAll" resultType="java.lang.Long" >
         SELECT
           count(*)
@@ -42,19 +49,19 @@
             <!-- or ->  SELECT my_sequence.nextVal from dual   -->
         </selectKey>
         INSERT INTO
-        alx_user
+        alex_user
         (userName,passWord,user_sex)
         VALUES
         (#{userName}, #{passWord}, #{userSex})
     </insert>
 
-    <update id="update" parameterType="com.alexura.baobao.entity.UserEntity" >
+    <update id="updateUser" parameterType="com.alexura.baobao.entity.UserEntity" >
         UPDATE
-        alx_user
+        alex_user
         SET
         <if test="userName != null">user_name = #{userName},</if>
         <if test="userTel != null">user_tel = #{userTel},</if>
-        <if test="passWord != null">passwd = #{passwd},</if>
+        <if test="passwd != null">passwd = #{passwd},</if>
         modified = now()
         WHERE
         id = #{id}

@@ -173,14 +173,19 @@
 
         modal.find('.modal-body #account').val(account);
         modal.find('.modal-body input').val()
-    })
+    });
     function doSubmit() {
         var passwd = $("#passwd").val();
         var lianxiren = $("#lianxiren").val();
         var lianxifangshi = $("#lianxifangshi").val();
         var uid = $("#uid").val();
         $.post("/user/edit",{uid:uid, userTel:lianxifangshi,userName:lianxiren,passwd:passwd}, function (data) {
-            console.log(data);
+            if (!data.success) {
+                alert("修改用户信息失败");
+            } else {
+                alert("修改成功");
+                location.reload(true);
+            }
         });
     }
 </script>
