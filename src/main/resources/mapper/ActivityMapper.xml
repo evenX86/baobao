@@ -34,6 +34,14 @@
         FROM alex_activity
     </select>
 
+    <select id="getActById" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM alex_activity
+        WHERE
+        id=#{actId}
+    </select>
+
     <select id="countAll" resultType="java.lang.Long" >
        SELECT count(*) from alex_activity
     </select>

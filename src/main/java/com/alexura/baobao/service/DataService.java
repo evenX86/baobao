@@ -17,4 +17,6 @@ public interface DataService {
     public Long countAll();
     public Long countAllGroup();
     public List<Map<String, Object>> queryGroupNum();
+
+    ActivityEntity getActById(Integer actIdVal);
 }

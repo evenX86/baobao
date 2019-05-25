@@ -64,4 +64,10 @@ public class DataServiceImpl implements DataService {
     public List<Map<String,Object>> queryGroupNum() {
         return activityMapper.queryGroupNum();
     }
+
+    @Override
+    public ActivityEntity getActById(Integer actIdVal) {
+        ActivityEntity activityEntity = activityMapper.getActById(actIdVal);
+       return activityEntity;
+    }
 }

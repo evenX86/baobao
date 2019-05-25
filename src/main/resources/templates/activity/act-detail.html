@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="header :: commonHead('体育社区 | 社团活动信息明细')"></head>
+<body>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation" th:include="header :: commonMenu('act-detail','社团活动信息明细')">
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-sign-out"></i> 登出
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>社团活动明细</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+                    <li>
+                        <a>数据</a>
+                    </li>
+                    <li class="active">
+                        <strong>活动信息</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>活动图片</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="carousel slide" id="carousel1">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg1()})}">
+                                    </div>
+                                    <div class="item">
+                                        <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg2()})}">
+                                    </div>
+                                    <div class="item ">
+                                        <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg3()})}">
+                                    </div>
+                                    <div class="item ">
+                                        <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg4()})}">
+                                    </div>
+                                </div>
+                                <a data-slide="prev" href="#carousel1" class="left carousel-control">
+                                    <span class="icon-prev"></span>
+                                </a>
+                                <a data-slide="next" href="#carousel1" class="right carousel-control">
+                                    <span class="icon-next"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer" th:include="footer::footer"></div>
+    </div>
+</div>
+<span th:include="common_js:: commonOnLoadJs"></span>
+<script>
+    function downloadExl() {
+        window.location.href="/activity/exportActivity";
+    }
+    function showBigImg() {
+        $(event.srcElement.parentElement.children[1]).css("display","inline-block");
+
+    }
+    function hideBigImg() {
+        $(event.srcElement).css("display", "none");
+    }
+</script>
+</body>
+</html>

@@ -65,6 +65,15 @@ public class ActivityController {
         return "add-act";
     }
 
+    @RequestMapping("detail-info")
+    public String detailInfo(String actId,Model model) {
+        log.error("actIdL: " + actId);
+        Integer actIdVal = Integer.valueOf(actId);
+        ActivityEntity activityEntity = dataService.getActById(actIdVal);
+        model.addAttribute("activity", activityEntity);
+        return "activity/act-detail";
+    }
+
     @RequestMapping("exportActivity")
     public void export(HttpServletResponse response, HttpSession session) {
         List<ActivityEntity> activityEntityList = dataService.listActivity();

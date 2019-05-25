@@ -23,4 +23,6 @@ public interface ActivityMapper {
     Long countAllGroup();
 
     List<Map<String, Object>> queryGroupNum();
+
+    ActivityEntity getActById(@Param("actId") Integer actId);
 }
