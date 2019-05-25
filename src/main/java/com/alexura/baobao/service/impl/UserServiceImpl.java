@@ -57,4 +57,10 @@ public class UserServiceImpl  implements UserService {
         return userMapper.getUserByAccountAndPasswd(account, passwd);
 
     }
+
+    @Override
+    public void updateUser(UserEntity userEntity) {
+
+        userMapper.updateUser(userEntity);
+    }
 }

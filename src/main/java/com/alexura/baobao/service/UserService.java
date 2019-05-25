@@ -18,4 +18,6 @@ public interface UserService {
     UserEntity getUserByAccount(Integer uid);
 
     UserEntity login(String account, String passwd);
+
+    public void updateUser(UserEntity userEntity);
 }

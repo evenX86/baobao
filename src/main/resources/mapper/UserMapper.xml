@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.alexura.baobao.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.alexura.baobao.entity.UserEntity" >
+        <result property="id"  column = "id" jdbcType="INTEGER"/>
+        <result property="account"  column = "account" jdbcType="VARCHAR"/>
+        <result property="userName"  column = "user_name" jdbcType="VARCHAR"/>
+        <result property="userTel"  column = "user_tel" jdbcType="VARCHAR"/>
+        <result property="groupName"  column = "group_name" jdbcType="VARCHAR"/>
+        <result property="created"  column = "created" jdbcType="VARCHAR"/>
+        <result property="modified"  column = "modified" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        `id`,`account`,user_name,user_tel,group_name,created,modified
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM alex_user
+    </select>
+
+    <select id="getUserByAccountAndPasswd" parameterType="map" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM alex_user
+        WHERE `account` = #{account} and passwd=#{passwd}
+    </select>
+
+    <select id="countAll" resultType="java.lang.Long" >
+        SELECT
+          count(*)
+        FROM alex_user
+    </select>
+
+
+    <insert id="insert" parameterType="com.alexura.baobao.entity.UserEntity" >
+        <selectKey keyProperty="objectId" resultType="int" order="BEFORE">
+            SELECT nextVal('my_sequence')
+            <!-- or ->  SELECT my_sequence.nextVal from dual   -->
+        </selectKey>
+        INSERT INTO
+        alx_user
+        (userName,passWord,user_sex)
+        VALUES
+        (#{userName}, #{passWord}, #{userSex})
+    </insert>
+
+    <update id="update" parameterType="com.alexura.baobao.entity.UserEntity" >
+        UPDATE
+        alx_user
+        SET
+        <if test="userName != null">user_name = #{userName},</if>
+        <if test="userTel != null">user_tel = #{userTel},</if>
+        <if test="passWord != null">passwd = #{passwd},</if>
+        modified = now()
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM
+        alex_user
+        WHERE
+        id =#{id}
+    </delete>
+</mapper>

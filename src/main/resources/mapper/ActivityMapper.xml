@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.alexura.baobao.mapper.ActivityMapper" >
+    <resultMap id="BaseResultMap" type="com.alexura.baobao.entity.ActivityEntity" >
+        <result property = "id"  column = "id" jdbcType="INTEGER"/>
+        <result property = "groupName"  column = "group_name" jdbcType="VARCHAR"/>
+        <result property = "actAddr"  column = "act_addr" jdbcType="VARCHAR"/>
+        <result property = "actDate"  column = "act_date" jdbcType="VARCHAR"/>
+        <result property = "actPeopleNum"  column = "act_people_num" jdbcType="VARCHAR"/>
+        <result property = "actUserTel"  column = "act_user_tel" jdbcType="VARCHAR"/>
+        <result property = "actUser"  column = "act_user" jdbcType="VARCHAR"/>
+        <result property = "desc"  column = "desc" jdbcType="VARCHAR"/>
+        <result property = "actImg1"  column = "act_img1" jdbcType="VARCHAR"/>
+        <result property = "actImg2"  column = "act_img2" jdbcType="VARCHAR"/>
+        <result property = "actImg3"  column = "act_img3" jdbcType="VARCHAR"/>
+        <result property = "actImg4"  column = "act_img4" jdbcType="VARCHAR"/>
+        <result property = "created"  column = "created" jdbcType="VARCHAR"/>
+        <result property = "modified"  column = "modified" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+      id, `group_name`,act_addr,act_date,act_people_num,act_user_tel,act_user,`desc`,act_img1,act_img2,act_img3,act_img4,created,modified
+    </sql>
+
+    <select id="queryGroupNum" resultType="map">
+        SELECT count(*) as cnt,group_name from alex_activity group by group_name
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM alex_activity
+    </select>
+
+    <select id="countAll" resultType="java.lang.Long" >
+       SELECT count(*) from alex_activity
+    </select>
+
+    <select id="countAllGroup" resultType="java.lang.Long" >
+       SELECT count(DISTINCT group_name) from alex_activity
+    </select>
+
+    <insert id="insert" parameterType="com.alexura.baobao.entity.UserEntity" >
+        <selectKey keyProperty="objectId" resultType="int" order="BEFORE">
+            SELECT nextVal('my_sequence')
+            <!-- or ->  SELECT my_sequence.nextVal from dual   -->
+        </selectKey>
+        INSERT INTO
+        alx_activity
+        (userName,passWord,user_sex)
+        VALUES
+        (#{userName}, #{passWord}, #{userSex})
+    </insert>
+
+    <update id="update" parameterType="com.alexura.baobao.entity.UserEntity" >
+        UPDATE
+        alx_activity
+        SET
+        <if test="userName != null">user_name = #{userName},</if>
+        <if test="userTel != null">user_tel = #{userTel},</if>
+        <if test="passWord != null">passwd = #{passwd},</if>
+        modified = now()
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM
+        alex_activity
+        WHERE
+        id =#{id}
+    </delete>
+</mapper>

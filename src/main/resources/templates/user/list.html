@@ -123,7 +123,7 @@
                         <label for="passwd" class="control-label">密码重置:</label>
                         <input class="form-control" id="passwd" name="passwd" type="password" autocomplete="off" >
                     </div>
-                    <input class="form-control" id="uid" name="uid" type="text" hidden="hidden">
+                    <input class="form-control" id="uid" name="uid" type="text" hidden="hidden" style="display: none;">
                 </form>
             </div>
             <div class="modal-footer">
@@ -175,10 +175,13 @@
         modal.find('.modal-body input').val()
     })
     function doSubmit() {
-        var account = $("#passwd").val();
-        var account = $("#lianxiren").val();
-        var account = $("#lianxifangshi").val();
+        var passwd = $("#passwd").val();
+        var lianxiren = $("#lianxiren").val();
+        var lianxifangshi = $("#lianxifangshi").val();
         var uid = $("#uid").val();
+        $.post("/user/edit",{uid:uid, userTel:lianxifangshi,userName:lianxiren,passwd:passwd}, function (data) {
+            console.log(data);
+        });
     }
 </script>
 </body>
