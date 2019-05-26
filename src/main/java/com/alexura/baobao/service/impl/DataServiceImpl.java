@@ -32,20 +32,6 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<ActivityEntity> listActivity() {
         List<ActivityEntity> result = activityMapper.getAll();
-        for (ActivityEntity activityEntity : result) {
-            if (activityEntity.getActImg1() != null && !activityEntity.getActImg1().contains("static")) {
-                activityEntity.setActImg1("static/img/"+activityEntity.getActImg1());
-            }
-            if (activityEntity.getActImg2() != null && !activityEntity.getActImg2().contains("static")) {
-                activityEntity.setActImg2("static/img/"+activityEntity.getActImg2());
-            }
-            if (activityEntity.getActImg3() != null && !activityEntity.getActImg3().contains("static")) {
-                activityEntity.setActImg3("static/img/"+activityEntity.getActImg3());
-            }
-            if (activityEntity.getActImg4() != null && !activityEntity.getActImg4().contains("static")) {
-                activityEntity.setActImg4("static/img/"+activityEntity.getActImg4());
-            }
-        }
         return  result;
     }
 

@@ -82,14 +82,14 @@
                                         <td th:text="${data.getActAddr()}">...</td>
                                         <td th:text="${data.getActPeopleNum()}">...</td>
                                         <td>
-                                            <img th:src="${data.getActImg1()}" width="30" height="30">
-                                            <img th:src="${data.getActImg1()}" width="200" height="200" style="display: none;margin-top: -35px;">
+                                            <img th:src="@{/static/img/{actImg}(actImg=${data.getActImg4()})}" width="30" height="30">
                                         </td>
                                         <td th:text="${data.getActUser()}">...</td>
                                         <td th:text="${data.getActUserTel()}">...</td>
                                         <td th:text="${data.getDesc()}">...</td>
-                                        <td><a th:href="'/activity/detail-info/?actId='+${data.getId()}">查看</a></td>
-                                        <td><a th:href="'/activity/edit-act/?actId='+${data.getId()}">编辑</a></td>
+                                        <td><a th:href="'/activity/detail-info/?actId='+${data.getId()}" target="_blank">查看</a></td>
+                                        <td><a th:href="'/activity/edit-act/?actId='+${data.getId()}" target="_blank">编辑</a></td>
+                                        <td><a class="list-group-item-danger" th:href="'/activity/del-act/?actId='+${data.getId()}">删除</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -108,13 +108,6 @@
 <script>
     function downloadExl() {
         window.location.href="/activity/exportActivity";
-    }
-    function showBigImg() {
-        $(event.srcElement.parentElement.children[1]).css("display","inline-block");
-
-    }
-    function hideBigImg() {
-        $(event.srcElement).css("display", "none");
     }
 </script>
 </body>

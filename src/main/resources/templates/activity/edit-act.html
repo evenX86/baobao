@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:include="header :: commonHead('体育社区 | 活动录入')"></head>
+<head th:include="header :: commonHead('体育社区 | 活动编辑')"></head>
 <body>
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation"
-         th:include="header :: commonMenu('addActivity','活动添加')">
+         th:include="header :: commonMenu('addActivity','活动编辑')">
     </nav>
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
@@ -34,7 +34,7 @@
                         <a>活动</a>
                     </li>
                     <li class="active">
-                        <strong>活动录入</strong>
+                        <strong>活动编辑</strong>
                     </li>
                 </ol>
             </div>
@@ -44,17 +44,22 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form method="post" class="form-horizontal" th:object="${activity}"
+                            <form method="post" class="form-horizontal"
                                   action="/activity/saveActivity" enctype="multipart/form-data">
-                                <div class="form-group"><label class="col-sm-2 control-label">社团名称</label>
-
-                                    <div class="col-sm-10"><input name="name" type="text" th:value="${oldAct.getGroupName()}"
-                                                                  class="form-control" disabled required=""></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">社团名称</label>
+                                    <div class="col-sm-10">
+                                        <input name="name" type="text" th:value="${oldAct.getGroupName()}"
+                                                                  class="form-control" disabled required="">
+                                    </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group"><label class="col-sm-2 control-label">活动地点</label>
-                                    <div class="col-sm-10"><input name="addr" th:field="*{actAddr}" type="text"
-                                                                  class="form-control" required="" th:value="${oldAct.getActAddr(}"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">活动地点</label>
+                                    <div class="col-sm-10">
+                                        <input name="actAddr" type="text"
+                                                                  class="form-control" required="" th:value="${oldAct.getActAddr()}">
+                                    </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
 
@@ -64,50 +69,49 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </span>
-                                        <input type="text" th:field="*{actDate}" class="form-control"
-                                               value="03/04/2014" required="">
+                                        <input type="text" th:value="${oldAct.getActDate()}" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">参与人数</label>
 
-                                    <div class="col-sm-10"><input type="text" th:field="*{actPeopleNum}" name="num"
+                                    <div class="col-sm-10"><input type="text" th:value="${oldAct.getActPeopleNum()}" name="actPeopleNum"
                                                                   class="form-control" required=""></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">结对社区</label>
-                                    <div class="col-sm-10"><input name="desc" th:field="*{community}" type="text"
+                                    <div class="col-sm-10"><input name="community" th:value="${oldAct.getCommunity()}" type="text"
                                                                   class="form-control" required=""></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">结对项目</label>
-                                    <div class="col-sm-10"><input name="desc" th:field="*{project}" type="text"
+                                    <div class="col-sm-10"><input name="project" th:value="${oldAct.getProject()}" type="text"
                                                                   class="form-control" required=""></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">活动简介</label>
-                                    <div class="col-sm-10"><input name="desc" th:field="*{introduce}" type="text"
+                                    <div class="col-sm-10"><input name="introduce" th:value="${oldAct.getIntroduce()}" type="text"
                                                                   class="form-control" required=""></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-lg-2 control-label">活动联系人</label>
 
-                                    <div class="col-sm-10"><input type="text" th:field="*{actUser}" name="contacts"
+                                    <div class="col-sm-10"><input type="text" th:value="${oldAct.getActUser()}" name="contacts"
                                                                   class="form-control" required=""></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">联系方式</label>
 
-                                    <div class="col-sm-10"><input type="text" th:field="*{actUserTel}" name="tel"
+                                    <div class="col-sm-10"><input type="text" th:value="${oldAct.getActUserTel()}" name="tel"
                                                                   class="form-control"  required=""/></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">备注</label>
-                                    <div class="col-sm-10"><input name="desc" th:field="*{desc}" type="text"
+                                    <div class="col-sm-10"><input name="desc" th:value="${oldAct.getDesc()}" type="text"
                                                                   class="form-control"  required=""></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -120,7 +124,9 @@
                                                    class="hide" >
                                             选取文件
                                         </label>
-                                        <img src="" id="inputImagePreview1" width="200px" height="200px" style="display: none">
+                                        <div class="item " th:if="!${#strings.isEmpty(oldAct.getActImg1())}">
+                                            <img src="" id="inputImagePreview1" width="200px" height="200px" th:src="@{/static/img/{actImg}(actImg=${oldAct.getActImg1()})}">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -133,7 +139,9 @@
                                                    class="hide">
                                             选取文件
                                         </label>
-                                        <img src="" id="inputImagePreview2" width="200" style="display: none">
+                                        <div class="item " th:if="!${#strings.isEmpty(oldAct.getActImg2())}">
+                                            <img src="" id="inputImagePreview2" width="200px" height="200px" th:src="@{/static/img/{actImg}(actImg=${oldAct.getActImg2()})}">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -146,7 +154,9 @@
                                                    class="hide">
                                             选取文件
                                         </label>
-                                        <img src="" id="inputImagePreview3" width="200">
+                                        <div class="item " th:if="!${#strings.isEmpty(oldAct.getActImg3())}">
+                                            <img  id="inputImagePreview3" width="200px" height="200px" th:src="@{/static/img/{actImg}(actImg=${oldAct.getActImg3()})}">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -159,7 +169,9 @@
                                                    class="hide">
                                             选取文件
                                         </label>
-                                        <img src="" id="inputImagePreview4" width="200">
+                                        <div class="item " th:if="!${#strings.isEmpty(oldAct.getActImg4())}">
+                                            <img  id="inputImagePreview4" width="200px" height="200px" th:src="@{/static/img/{actImg}(actImg=${oldAct.getActImg4()})}">
+                                        </div>
                                     </div>
                                 </div>
 
