@@ -44,15 +44,9 @@
 
 
     <insert id="insert" parameterType="com.alexura.baobao.entity.UserEntity" >
-        <selectKey keyProperty="objectId" resultType="int" order="BEFORE">
-            SELECT nextVal('my_sequence')
-            <!-- or ->  SELECT my_sequence.nextVal from dual   -->
-        </selectKey>
-        INSERT INTO
-        alex_user
-        (userName,passWord,user_sex)
+        INSERT INTO alex_user(`account`,user_name,user_tel,passwd,group_name,created,modified)
         VALUES
-        (#{userName}, #{passWord}, #{userSex})
+        (#{account}, #{userName},#{userTel},#{passwd},#{groupName}, now(),now())
     </insert>
 
     <update id="updateUser" parameterType="com.alexura.baobao.entity.UserEntity" >
