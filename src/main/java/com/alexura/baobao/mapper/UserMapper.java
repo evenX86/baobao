@@ -29,4 +29,6 @@ public interface UserMapper {
     UserEntity findUserByAccount(@Param("account") String account);
 
     void updateUser(UserEntity userEntity);
+
+    UserEntity getUser(@Param("account") String account);
 }

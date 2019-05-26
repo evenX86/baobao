@@ -29,4 +29,6 @@ public interface ActivityMapper {
     void delActById(@Param("actId") Integer actIdVal);
 
     void update(ActivityEntity activityEntity);
+
+    List<ActivityEntity> getAllByGroup(@Param("groupName") String groupName);
 }

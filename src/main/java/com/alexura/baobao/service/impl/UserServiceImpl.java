@@ -47,6 +47,11 @@ public class UserServiceImpl  implements UserService {
 
     }
 
+    @Override
+    public UserEntity getUser(String account) {
+        return userMapper.getUser(account);
+    }
+
     private UserEntity getUserByAccount(String account) {
         return userMapper.findUserByAccount(account);
 

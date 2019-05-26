@@ -14,6 +14,7 @@ import java.util.Map;
 public interface DataService {
     public void addActivity(ActivityEntity activity);
     public List<ActivityEntity> listActivity();
+    public List<ActivityEntity> listActivity(String groupName);
     public Long countAll();
     public Long countAllGroup();
     public List<Map<String, Object>> queryGroupNum();

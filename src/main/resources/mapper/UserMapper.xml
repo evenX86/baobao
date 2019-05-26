@@ -20,6 +20,7 @@
         SELECT
         <include refid="Base_Column_List" />
         FROM alex_user
+        where  `status`=1
     </select>
 
     <select id="getUserByAccountAndPasswd" parameterType="map" resultMap="BaseResultMap" >
@@ -27,6 +28,7 @@
         <include refid="Base_Column_List" />
         FROM alex_user
         WHERE `account` = #{account} and passwd=#{passwd}
+        and `status` =1
     </select>
 
     <select id="getUserByAccount" parameterType="map" resultMap="BaseResultMap" >
@@ -36,10 +38,20 @@
         WHERE id=#{id}
     </select>
 
+
+    <select id="getUser" parameterType="map" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM alex_user
+        WHERE `account` = #account#
+        AND `status`=1
+    </select>
+
     <select id="countAll" resultType="java.lang.Long" >
         SELECT
           count(*)
         FROM alex_user
+        WHERE `status` = 1
     </select>
 
 

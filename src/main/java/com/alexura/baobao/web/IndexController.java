@@ -1,6 +1,7 @@
 package com.alexura.baobao.web;
 
 import com.alexura.baobao.entity.ActivityEntity;
+import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -47,8 +49,18 @@ public class IndexController {
         return "index";
     }
     @RequestMapping("/act-detail")
-    public String index(ModelMap model) {
-        List<ActivityEntity> activityEntityList = dataService.listActivity();
+    public String index(ModelMap model, HttpSession session) {
+        String account = (String) session.getAttribute(SESSION_KEY);
+        UserEntity userEntity = userService.getUser(account);
+        if (userEntity == null) {
+            return "error";
+        }
+        List<ActivityEntity> activityEntityList = new ArrayList<>();
+        if ("admin".equals(account)) {
+            activityEntityList = dataService.listActivity();
+        } else {
+            activityEntityList  = dataService.listActivity(userEntity.getGroupName());
+        }
         model.addAttribute("dataList", activityEntityList);
         return "act-detail";
     }

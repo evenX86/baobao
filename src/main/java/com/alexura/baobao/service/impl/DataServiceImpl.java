@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,12 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<ActivityEntity> listActivity() {
         List<ActivityEntity> result = activityMapper.getAll();
+        return  result;
+    }
+
+    @Override
+    public List<ActivityEntity> listActivity(String groupName) {
+        List<ActivityEntity> result = activityMapper.getAllByGroup(groupName);
         return  result;
     }
 
