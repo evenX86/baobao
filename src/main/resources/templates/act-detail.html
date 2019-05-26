@@ -82,13 +82,14 @@
                                         <td th:text="${data.getActAddr()}">...</td>
                                         <td th:text="${data.getActPeopleNum()}">...</td>
                                         <td>
-                                            <img th:src="${data.getActImg1()}" width="30" height="30" onmouseover="showBigImg()">
-                                            <img th:src="${data.getActImg1()}" width="200" height="200" style="display: none;margin-top: -35px;" onmouseout="hideBigImg()">
+                                            <img th:src="${data.getActImg1()}" width="30" height="30">
+                                            <img th:src="${data.getActImg1()}" width="200" height="200" style="display: none;margin-top: -35px;">
                                         </td>
                                         <td th:text="${data.getActUser()}">...</td>
                                         <td th:text="${data.getActUserTel()}">...</td>
                                         <td th:text="${data.getDesc()}">...</td>
                                         <td><a th:href="'/activity/detail-info/?actId='+${data.getId()}">查看</a></td>
+                                        <td><a th:href="'/activity/edit-act/?actId='+${data.getId()}">编辑</a></td>
                                     </tr>
                                     </tbody>
                                 </table>

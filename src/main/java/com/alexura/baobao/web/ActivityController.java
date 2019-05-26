@@ -73,6 +73,19 @@ public class ActivityController {
         return "activity/act-detail";
     }
 
+    @RequestMapping("edit-act")
+    public String editAct(String actId,Model model) {
+        if (!StringUtils.isNumeric(actId)) {
+            return "error";
+        }
+        Integer actIdVal = Integer.valueOf(actId);
+        ActivityEntity activityEntity = dataService.getActById(actIdVal);
+        model.addAttribute("oldAct", activityEntity);
+        ActivityEntity newAct = new ActivityEntity();
+        model.addAttribute("activity", newAct);
+        return "activity/edit-act";
+    }
+
     @RequestMapping("exportActivity")
     public void export(HttpServletResponse response, HttpSession session) {
         List<ActivityEntity> activityEntityList = dataService.listActivity();
