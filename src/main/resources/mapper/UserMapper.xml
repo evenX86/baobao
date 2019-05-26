@@ -43,7 +43,7 @@
         SELECT
         <include refid="Base_Column_List" />
         FROM alex_user
-        WHERE `account` = #account#
+        WHERE `account` = #{account}
         AND `status`=1
     </select>
 
