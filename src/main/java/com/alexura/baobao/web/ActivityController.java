@@ -67,7 +67,6 @@ public class ActivityController {
 
     @RequestMapping("detail-info")
     public String detailInfo(String actId,Model model) {
-        log.error("actIdL: " + actId);
         Integer actIdVal = Integer.valueOf(actId);
         ActivityEntity activityEntity = dataService.getActById(actIdVal);
         model.addAttribute("activity", activityEntity);

@@ -53,13 +53,13 @@
                                     <div class="item active">
                                         <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg1()})}">
                                     </div>
-                                    <div class="item">
+                                    <div class="item " th:if="!${#strings.isEmpty(activity.getActImg2())}">
                                         <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg2()})}">
                                     </div>
-                                    <div class="item ">
+                                    <div class="item " th:if="!${#strings.isEmpty(activity.getActImg3())}">
                                         <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg3()})}">
                                     </div>
-                                    <div class="item ">
+                                    <div class="item " th:if="!${#strings.isEmpty(activity.getActImg4())}">
                                         <img alt="image" class="img-responsive" th:src="@{/static/img/{actImg}(actImg=${activity.getActImg4()})}">
                                     </div>
                                 </div>
