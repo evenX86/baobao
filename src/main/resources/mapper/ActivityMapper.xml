@@ -57,7 +57,7 @@
 
     <insert id="insert" parameterType="com.alexura.baobao.entity.UserEntity" >
         INSERT INTO alex_activity
-        (`group_name`,act_addr,act_date,act_people_num,act_user_telact_user_tel,act_user,`desc`,`introduce`,`community`,`project`,act_img1,act_img2,act_img3,act_img4,created,modified)
+        (`group_name`,act_addr,act_date,act_people_num,act_user_tel,act_user,`desc`,`introduce`,`community`,`project`,act_img1,act_img2,act_img3,act_img4,created,modified)
         VALUES(#{groupName}, #{actAddr},#{actDate},#{actPeopleNum},#{actUserTel},#{actUser},#{desc},#{introduce},#{community},#{project},#{actImg1},#{actImg2},#{actImg3},#{actImg4}, now(),now())
     </insert>
 
