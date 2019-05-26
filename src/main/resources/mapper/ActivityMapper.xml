@@ -63,7 +63,7 @@
 
     <update id="update" parameterType="com.alexura.baobao.entity.UserEntity" >
         UPDATE
-        alx_activity
+        alex_activity
         SET
         <if test="userName != null">user_name = #{userName},</if>
         <if test="userTel != null">user_tel = #{userTel},</if>
@@ -79,4 +79,14 @@
         WHERE
         id =#{id}
     </delete>
+
+    <update id="delActById" parameterType="map" >
+        UPDATE
+        alex_activity
+        SET
+        status=-1,
+        modified = now()
+        WHERE
+        id = #{actId}
+    </update>
 </mapper>

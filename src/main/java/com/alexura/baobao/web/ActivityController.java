@@ -167,4 +167,23 @@ public class ActivityController {
         result.put("grp", groupList);
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("/del")
+    @ResponseBody
+    public ResponseEntity<?> del(String actId) {
+        Map<String, Object> result = new HashMap<>();
+        try {
+            Integer actIdVal = Integer.valueOf(actId);
+            dataService.delActById(actIdVal);
+            result.put("success", true);
+            result.put("msg", "删除成功");
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            log.error("删除活动出错: " ,e);
+            result.put("success",false);
+            result.put("msg", "系统异常" + e.getMessage());
+            return ResponseEntity.ok(result);
+        }
+
+    }
 }

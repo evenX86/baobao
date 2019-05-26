@@ -89,7 +89,7 @@
                                         <td th:text="${data.getDesc()}">...</td>
                                         <td><a th:href="'/activity/detail-info/?actId='+${data.getId()}" target="_blank">查看</a></td>
                                         <td><a th:href="'/activity/edit-act/?actId='+${data.getId()}" target="_blank">编辑</a></td>
-                                        <td><a class="list-group-item-danger" th:href="'/activity/del-act/?actId='+${data.getId()}">删除</a></td>
+                                        <td><a class="list-group-item-danger"  data-toggle="modal" th:attr="data-actId=${data.getId()}", data-target=".bs-example-modal-lg-1">删除</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -104,11 +104,55 @@
         <div class="footer" th:include="footer::footer"></div>
     </div>
 </div>
+<div class="modal fade bs-example-modal-lg-1" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel-1">活动删除</h4>
+            </div>
+            <div class="modal-body">
+                <form autocomplete="off">
+                    <div class="form-group">
+                        <label for="actId" class="control-label">活动id:</label>
+                        <input type="text" class="form-control" id="actId" name="actId" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-danger" id="delActBtn">确认删除</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <span th:include="common_js:: commonOnLoadJs"></span>
 <script>
     function downloadExl() {
         window.location.href="/activity/exportActivity";
     }
+    $(document).on('show.bs.modal','.bs-example-modal-lg-1', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var actId = button.data('actid'); // Extract info from data-* attributes
+        var modal = $(this);
+        modal.find('.modal-body #actId').val(actId);
+
+
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        /*;*/
+        $("#delActBtn").click(function (event) {
+            var actId = $("#actId").val();
+            $.post("/activity/del",{actId:actId}, function (data) {
+                if (!data.success) {
+                    alert("删除失败: " + data.msg);
+                } else {
+                    alert("删除成功");
+                    location.reload(true);
+                }
+            })
+        });
+    });
 </script>
 </body>
 </html>

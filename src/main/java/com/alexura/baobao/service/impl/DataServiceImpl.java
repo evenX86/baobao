@@ -56,4 +56,10 @@ public class DataServiceImpl implements DataService {
         ActivityEntity activityEntity = activityMapper.getActById(actIdVal);
        return activityEntity;
     }
+
+    @Override
+    public void delActById(Integer actIdVal) {
+        activityMapper.delActById(actIdVal);
+
+    }
 }

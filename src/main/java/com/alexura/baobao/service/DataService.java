@@ -19,4 +19,6 @@ public interface DataService {
     public List<Map<String, Object>> queryGroupNum();
 
     ActivityEntity getActById(Integer actIdVal);
+
+    void delActById(Integer actIdVal);
 }

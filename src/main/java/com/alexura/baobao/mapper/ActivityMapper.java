@@ -25,4 +25,6 @@ public interface ActivityMapper {
     List<Map<String, Object>> queryGroupNum();
 
     ActivityEntity getActById(@Param("actId") Integer actId);
+
+    void delActById(@Param("actId") Integer actIdVal);
 }
