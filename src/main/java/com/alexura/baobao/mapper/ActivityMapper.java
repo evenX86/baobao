@@ -27,4 +27,6 @@ public interface ActivityMapper {
     ActivityEntity getActById(@Param("actId") Integer actId);
 
     void delActById(@Param("actId") Integer actIdVal);
+
+    void update(ActivityEntity activityEntity);
 }

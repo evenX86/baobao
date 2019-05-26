@@ -127,6 +127,41 @@ public class ActivityController {
         dataService.addActivity(activityEntity);
         return "redirect:/act-detail";
     }
+
+    @PostMapping("/doEdit-act")
+    public String doEditAct(@ModelAttribute ActivityEntity activityEntity, MultipartFile file1,
+                          MultipartFile file2, MultipartFile file3, MultipartFile file4,  HttpSession session) {
+        if (activityEntity.getActDate() == null) {
+            return "redirect:/add-act";
+        }
+        log.error("xuyifei debug act ： " + JsonUtil.write2JsonStr(activityEntity));
+        Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
+        UserEntity entity =  userService.getUserByAccount(uid);
+        activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
+        // 服务器上上传文件的相对路径
+        String uploadPath = "static/img";
+        // 服务器上上传文件的物理路径
+        String path = getClass().getClassLoader().getResource(uploadPath).getPath();
+        if (file1 != null && !file1.isEmpty()) {
+            String imageURL1 = imageUploadService.uploadImage( file1, uploadPath, path, entity.getId());
+            activityEntity.setActImg1(imageURL1);
+        }
+        if (file2 != null && !file2.isEmpty()) {
+            String imageURL2 = imageUploadService.uploadImage( file2, uploadPath, path, entity.getId());
+            activityEntity.setActImg2(imageURL2);
+        }
+        if (file3 != null && !file3.isEmpty()) {
+            String imageURL3 = imageUploadService.uploadImage( file3, uploadPath, path, entity.getId());
+            activityEntity.setActImg3(imageURL3);
+        }
+        if (file4 != null && !file4.isEmpty()) {
+            String imageURL4 = imageUploadService.uploadImage( file4, uploadPath, path, entity.getId());
+            activityEntity.setActImg4(imageURL4);
+        }
+        dataService.updateActivity(activityEntity);
+        return "redirect:/act-detail";
+    }
+
     @PostMapping("/activityData")
     @ResponseBody
     public ResponseEntity<?> activityData() {

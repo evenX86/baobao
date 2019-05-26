@@ -62,4 +62,9 @@ public class DataServiceImpl implements DataService {
         activityMapper.delActById(actIdVal);
 
     }
+
+    @Override
+    public void updateActivity(ActivityEntity activityEntity) {
+        activityMapper.update(activityEntity);
+    }
 }

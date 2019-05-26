@@ -21,4 +21,6 @@ public interface DataService {
     ActivityEntity getActById(Integer actIdVal);
 
     void delActById(Integer actIdVal);
+
+    void updateActivity(ActivityEntity activityEntity);
 }
