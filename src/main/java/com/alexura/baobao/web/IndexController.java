@@ -64,4 +64,9 @@ public class IndexController {
         model.addAttribute("dataList", activityEntityList);
         return "act-detail";
     }
+
+    @RequestMapping("/feedback")
+    public String feedback(ModelMap model, HttpSession session) {
+        return "issues";
+    }
 }
