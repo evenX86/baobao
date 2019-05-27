@@ -25,6 +25,25 @@
     <link th:href="@{/static/css/plugins/daterangepicker/daterangepicker-bs3.css}" rel="stylesheet">
 
 </head>
+<div class="row border-bottom" th:fragment = "commonPageHead()">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        <h1 class="logo-name">
+            <img th:src="@{/static/img/0-1.png}"  class="img-responsive img-rounded" width="20%" alt="Responsive image" style="float: left;">
+            <img th:src="@{/static/img/0-2.png}"  class="img-responsive img-rounded" width="20%" style="float: left;margin-left: 20px;margin-top: 1%" alt="Responsive image">
+        </h1>
+        <ul class="nav navbar-top-links navbar-right" style="float: right">
+            <li>
+                <a th:href="@{/logout}">
+                    <i class="fa fa-sign-out"></i> 登出
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+</div>
 <nav class="navbar-default navbar-static-side" role="navigation" th:fragment="commonMenu(menu,menuName)">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
