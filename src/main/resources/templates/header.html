@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li th:class="${menu=='act-detail'}?'active':''">
-                <a href="/act-detail"><i class="fa fa-share"></i>
+                <a href="/act-detail"><i class="fa fa-anchor"></i>
                     <span class="nav-label">活动信息</span>
                 </a>
             </li>
@@ -84,6 +84,11 @@
                         <a href="/user/add" th:text="用户添加">
                         </a></li>
                 </ul>
+            </li>
+            <li th:class="${menu=='feedback'}?'active':''">
+                <a href="/feedback"><i class="fa fa-bug"></i>
+                    <span class="nav-label">问题反馈</span>
+                </a>
             </li>
         </ul>
     </div>
