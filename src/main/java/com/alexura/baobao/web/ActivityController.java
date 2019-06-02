@@ -216,10 +216,25 @@ public class ActivityController {
 
     @PostMapping("/del")
     @ResponseBody
-    public ResponseEntity<?> del(String actId) {
+    public ResponseEntity<?> del(String actId, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
+        String account = (String) session.getAttribute(SESSION_KEY);
+        UserEntity userEntity = userService.getUser(account);
+        if (userEntity == null) {
+            result.put("success", false);
+            result.put("msg", "无权限");
+            return ResponseEntity.ok(result);
+        }
         try {
             Integer actIdVal = Integer.valueOf(actId);
+            ActivityEntity entity = dataService.getActById(actIdVal);
+            if (!entity.getGroupName().equals(userEntity.getGroupName())) {
+                if (!"admin".equals(account)) {
+                    result.put("success", false);
+                    result.put("msg", "无权限");
+                    return ResponseEntity.ok(result);
+                }
+            }
             dataService.delActById(actIdVal);
             result.put("success", true);
             result.put("msg", "删除成功");
