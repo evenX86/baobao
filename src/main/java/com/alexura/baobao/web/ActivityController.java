@@ -90,7 +90,17 @@ public class ActivityController {
 
     @RequestMapping("exportActivity")
     public void export(HttpServletResponse response, HttpSession session) {
-        List<ActivityEntity> activityEntityList = dataService.listActivity();
+        String account = (String) session.getAttribute(SESSION_KEY);
+        UserEntity userEntity = userService.getUser(account);
+        if (userEntity == null) {
+            return;
+        }
+        List<ActivityEntity> activityEntityList = new ArrayList<>();
+        if ("admin".equals(account)) {
+            activityEntityList = dataService.listActivity();
+        } else {
+            activityEntityList = dataService.listActivity(userEntity.getGroupName());
+        }
         LocalDateTime localDateTime = LocalDateTime.now();
         String datetime = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
         ExcelUtils.exportExcel(activityEntityList, "社团活动信息","活动", ActivityEntity.class, "活动记录"+datetime+".xls", response);
@@ -136,7 +146,6 @@ public class ActivityController {
         if (activityEntity.getActDate() == null) {
             return "redirect:/add-act";
         }
-        log.error("xuyifei debug act ： " + JsonUtil.write2JsonStr(activityEntity));
         Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
         UserEntity entity =  userService.getUserByAccount(uid);
         activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
@@ -254,6 +263,7 @@ public class ActivityController {
             }
             List<ActivityEntity> activityEntities =  dataService.queryActByOpt(d1, d2, groupOpt, userEntity);
             result.put("activityList", activityEntities);
+            result.put("actSize", activityEntities.size());
         } catch (Exception e) {
             log.error("日期转换出错: " ,e);
             result.put("msg","日期格式错误");

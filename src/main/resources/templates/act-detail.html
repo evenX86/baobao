@@ -124,27 +124,26 @@
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-                                    <tbody th:each="data:${dataList}">
-                                    <tr>
-                                        <td th:text="${data.getId()}"></td>
-                                        <td th:text="${data.getGroupName()}">...</td>
-                                        <td th:text="${data.getActDate()}">...</td>
-                                        <td th:text="${data.getActAddr()}">...</td>
-                                        <td th:text="${data.getActPeopleNum()}">...</td>
-                                        <td>
-                                            <img th:src="@{/static/img/{actImg}(actImg=${data.getActImg1()})}" width="30" height="30">
-                                        </td>
-                                        <td th:text="${data.getActUser()}">...</td>
-                                        <td th:text="${data.getActUserTel()}">...</td>
-                                        <td th:text="${data.getDesc()}">...</td>
-                                        <td><a th:href="'/activity/detail-info/?actId='+${data.getId()}" target="_blank">查看</a></td>
-                                        <td><a th:href="'/activity/edit-act/?actId='+${data.getId()}" target="_blank">编辑</a></td>
-                                        <td><a class="list-group-item-danger"  data-toggle="modal" th:attr="data-actId=${data.getId()}", data-target=".bs-example-modal-lg-1">删除</a></td>
-                                    </tr>
+                                    <tbody id="actDataBody">
+                                    <!-- <tr>
+                                         <td th:text="${data.getId()}"></td>
+                                         <td th:text="${data.getGroupName()}">...</td>
+                                         <td th:text="${data.getActDate()}">...</td>
+                                         <td th:text="${data.getActAddr()}">...</td>
+                                         <td th:text="${data.getActPeopleNum()}">...</td>
+                                         <td>
+                                             <img th:src="@{/static/img/{actImg}(actImg=${data.getActImg1()})}" width="30" height="30">
+                                         </td>
+                                         <td th:text="${data.getActUser()}">...</td>
+                                         <td th:text="${data.getActUserTel()}">...</td>
+                                         <td th:text="${data.getDesc()}">...</td>
+                                         <td><a th:href="'/activity/detail-info/?actId='+${data.getId()}" target="_blank">查看</a></td>
+                                         <td><a th:href="'/activity/edit-act/?actId='+${data.getId()}" target="_blank">编辑</a></td>
+                                     </tr>-->
                                     </tbody>
                                 </table>
                                 <div>
-                                    <span>
+                                    <span id="numActTag">
                                         共 53 条记录
                                     </span>
                                     <div class="ibox-tools">
@@ -188,6 +187,7 @@
 <span th:include="common_js:: commonOnLoadJs"></span>
 <script>
     $(document).ready(function () {
+        flushTable();
         $('.dateDiv .dateInput').datepicker({
             todayBtn: "linked",
             keyboardNavigation: false,
@@ -205,6 +205,27 @@
             if (!data.success) {
                 alert(data.msg);
             }
+            var html = "";
+            data.activityList.forEach(function (data) {
+                html += "<tr>";
+                html += "<td>"+data.id+"</td>";
+                html += "<td>"+data.groupName+"</td>";
+                html += "<td>"+data.actDate+"</td>";
+                html += "<td>"+data.actAddr+"</td>";
+                html += "<td>"+data.actPeopleNum+"</td>";
+                html += "<td><img src='/static/img/"+data.actImg1+"' style='width: 30px;height: 30px'> </td>";
+                html += "<td>"+data.actUser+"</td>";
+                html += "<td>"+data.actUserTel+"</td>";
+                html += "<td>"+data.desc+"</td>";
+
+
+                html += "<td><a href=\"/activity/detail-info/?actId="+data.id+"\" target=\"_blank\">查看</a></td>";
+                html += "<td><a href=\"/activity/edit-act/?actId="+data.id+"\" target=\"_blank\">编辑</a></td>";
+                html += "<td><a class=\"list-group-item-danger\"  data-toggle=\"modal\" data-actId=\""+data.id+"\", data-target=\".bs-example-modal-lg-1\">删除</a></td>";
+                html += "</tr>";
+            });
+            $("#actDataBody").html(html);
+            $("#numActTag").text("共 " + data.actSize + " 条记录");
         });
 
     }
