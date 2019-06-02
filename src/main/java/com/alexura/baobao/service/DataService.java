@@ -1,7 +1,9 @@
 package com.alexura.baobao.service;
 
 import com.alexura.baobao.entity.ActivityEntity;
+import com.alexura.baobao.entity.UserEntity;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,4 +26,6 @@ public interface DataService {
     void delActById(Integer actIdVal);
 
     void updateActivity(ActivityEntity activityEntity);
+
+    List<ActivityEntity> queryActByOpt(Date d1, Date d2, String groupOpt, UserEntity userEntity);
 }

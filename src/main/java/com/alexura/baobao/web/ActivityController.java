@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -220,5 +222,46 @@ public class ActivityController {
             return ResponseEntity.ok(result);
         }
 
+    }
+
+    @PostMapping("/optList")
+    @ResponseBody
+    public ResponseEntity<?> optList(String startDate, String endDate, String groupOpt, HttpSession session) {
+        Map<String, Object> result = new HashMap<>();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = null;
+        Date d2 = null;
+        String account = (String) session.getAttribute(SESSION_KEY);
+        UserEntity userEntity = userService.getUser(account);
+        if (userEntity == null) {
+            result.put("msg","用户未登录");
+            result.put("success", false);
+            return ResponseEntity.ok(result);
+        }
+        try {
+            if (StringUtils.isNotBlank(startDate)){
+                d1 = format.parse(startDate);
+            }
+            if (StringUtils.isNotBlank(endDate)) {
+                d2 = format.parse(endDate);
+            }
+            if (d1 != null && d2 != null) {
+                if (d1.after(d2)) {
+                    result.put("msg","开始时间不能晚于结束时间");
+                    result.put("success", false);
+                    return ResponseEntity.ok(result);
+                }
+            }
+            List<ActivityEntity> activityEntities =  dataService.queryActByOpt(d1, d2, groupOpt, userEntity);
+            result.put("activityList", activityEntities);
+        } catch (Exception e) {
+            log.error("日期转换出错: " ,e);
+            result.put("msg","日期格式错误");
+            result.put("success", false);
+            return ResponseEntity.ok(result);
+        }
+        result.put("success", true);
+        result.put("msg", "查询成功");
+        return ResponseEntity.ok(result);
     }
 }

@@ -37,7 +37,7 @@
                                         <span class="input-group-addon">
                                                            社团筛选
                                         </span>
-                                        <select class="form-control">
+                                        <select class="form-control" id="groupOpt">
                                             <option value="全部">全部</option>
                                             <option value="温州市象棋协会">温州市象棋协会</option>
                                             <option value="温州市社会体育指导员协会">温州市社会体育指导员协会</option>
@@ -91,16 +91,16 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar">开始时间</i>
                                         </span>
-                                        <input type="text" name="startDate"  class="form-control dateInput" required="" style="width: 200px">
+                                        <input type="text" name="startDate" id="startDate"  class="form-control dateInput" required="" style="width: 200px">
                                     </div>
                                     <div class="input-group dateDiv" style="margin-left: 20px;width: 70px; float: left;">
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar">结束时间</i>
                                         </span>
-                                        <input type="text" name="endDate"  class="form-control dateInput" required="" style="width: 200px">
+                                        <input type="text" name="endDate" id="endDate" class="form-control dateInput" required="" style="width: 200px">
                                     </div>
                                     <div class="input-group">
-                                        <button class="btn btn-success">确认</button>
+                                        <button class="btn btn-success" id="submitOpt" onclick="flushTable()">确认</button>
                                     </div>
                                 </div>
                             </div>
@@ -197,6 +197,17 @@
         });
     });
 
+    function flushTable() {
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
+        var groupOpt = $("#groupOpt").val();
+        $.post("/activity/optList",{startDate:startDate, endDate:endDate,groupOpt:groupOpt}, function (data) {
+            if (!data.success) {
+                alert(data.msg);
+            }
+        });
+
+    }
     function downloadExl() {
         window.location.href="/activity/exportActivity";
     }

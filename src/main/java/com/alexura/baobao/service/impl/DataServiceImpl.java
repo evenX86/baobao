@@ -1,6 +1,7 @@
 package com.alexura.baobao.service.impl;
 
 import com.alexura.baobao.entity.ActivityEntity;
+import com.alexura.baobao.entity.UserEntity;
 import com.alexura.baobao.mapper.ActivityMapper;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.utils.JsonUtil;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -73,5 +76,16 @@ public class DataServiceImpl implements DataService {
     @Override
     public void updateActivity(ActivityEntity activityEntity) {
         activityMapper.update(activityEntity);
+    }
+
+    @Override
+    public List<ActivityEntity> queryActByOpt(Date d1, Date d2, String groupOpt, UserEntity userEntity) {
+        if ("全部".equals(groupOpt)) {
+            groupOpt = null;
+        }
+        if (!"admin".equals(userEntity.getAccount())) {
+            groupOpt = userEntity.getGroupName();
+        }
+        return activityMapper.queryActList(d1,d2,groupOpt);
     }
 }

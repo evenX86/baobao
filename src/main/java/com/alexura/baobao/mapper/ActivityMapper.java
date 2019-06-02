@@ -3,6 +3,7 @@ package com.alexura.baobao.mapper;
 import com.alexura.baobao.entity.ActivityEntity;
 import org.apache.ibatis.annotations.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,4 +32,6 @@ public interface ActivityMapper {
     void update(ActivityEntity activityEntity);
 
     List<ActivityEntity> getAllByGroup(@Param("groupName") String groupName);
+
+    List<ActivityEntity> queryActList(@Param("st") Date d1, @Param("et") Date d2, @Param("search") String groupOpt);
 }

@@ -39,12 +39,29 @@
         ORDER BY id DESC
     </select>
 
-    <select id="getAllByGroup" resultMap="BaseResultMap">
+    <select id="getAllByGroup" resultMap="BaseResultMap" parameterType="map">
         SELECT
         <include refid="Base_Column_List" />
         FROM alex_activity
         WHERE status=1
         AND group_name = #{groupName}
+        ORDER BY id DESC
+    </select>
+
+    <select id="queryActList" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM alex_activity
+        WHERE status=1
+        <if test="search != null">
+            AND group_name like #{search}
+        </if>
+        <if test="st != null">
+            AND act_date >= #{st}
+        </if>
+        <if test="et != null">
+            <![CDATA[ AND act_date <=#{et} ]]>
+        </if>
         ORDER BY id DESC
     </select>
 
