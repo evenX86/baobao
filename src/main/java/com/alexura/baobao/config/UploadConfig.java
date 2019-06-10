@@ -25,9 +25,9 @@ public class UploadConfig {
         MultipartConfigFactory factory = new MultipartConfigFactory();
         factory.setLocation(uploadFolder);
         //文件最大
-        factory.setMaxFileSize(DataSize.of(5, DataUnit.MEGABYTES));
+        factory.setMaxFileSize(DataSize.of(10, DataUnit.MEGABYTES));
         // 设置总上传数据总大小
-        factory.setMaxRequestSize(DataSize.of(10, DataUnit.MEGABYTES));
+        factory.setMaxRequestSize(DataSize.of(20, DataUnit.MEGABYTES));
         return factory.createMultipartConfig();
     }
 }
