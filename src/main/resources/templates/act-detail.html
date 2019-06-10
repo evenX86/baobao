@@ -3,7 +3,8 @@
 <head th:include="header :: commonHead('体育社区 | 社团活动信息明细')"></head>
 <body>
 <div id="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation" th:include="header :: commonMenu('act-detail','社团活动信息明细')">
+    <nav class="navbar-default navbar-static-side" role="navigation"
+         th:include="header :: commonMenu('act-detail','社团活动信息明细')">
     </nav>
     <div id="page-wrapper" class="gray-bg">
         <div th:include="header::commonPageHead()"></div>
@@ -31,76 +32,107 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div>
-                            <div id="collapseExample" style="width: auto;height: 50px">
-                                <div class="well" >
-                                    <div class="input-group" style="float: left;width:270px">
+                            <div>
+                                <div class="well alert alert-info panel panel-default" role="alert">
+                                    <div class="panel-heading">活动记录筛选</div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="input-group">
                                         <span class="input-group-addon">
                                                            社团筛选
                                         </span>
-                                        <select class="form-control" id="groupOpt">
-                                            <option value="全部">全部</option>
-                                            <option value="温州市象棋协会">温州市象棋协会</option>
-                                            <option value="温州市社会体育指导员协会">温州市社会体育指导员协会</option>
-                                            <option value="温州马拉松协会">温州马拉松协会</option>
-                                            <option value="温州市空竹运动协会">温州市空竹运动协会</option>
-                                            <option value="温州市排舞广场舞协会">温州市排舞广场舞协会</option>
-                                            <option value="温州市山地户外运动协会">温州市山地户外运动协会</option>
-                                            <option value="温州市体育场馆协会">温州市体育场馆协会</option>
-                                            <option value="温州市轮滑运动协会">温州市轮滑运动协会</option>
-                                            <option value="温州市保龄球运动协会">温州市保龄球运动协会</option>
-                                            <option value="温州市风筝协会">温州市风筝协会</option>
-                                            <option value="温州市桥牌协会">温州市桥牌协会</option>
-                                            <option value="温州市登山协会">温州市登山协会</option>
-                                            <option value="温州市钓鱼协会">温州市钓鱼协会</option>
-                                            <option value="温州市自行车运动协会">温州市自行车运动协会</option>
-                                            <option value="温州市无线电定向运动协会">温州市无线电定向运动协会</option>
-                                            <option value="温州市国际体育舞蹈协会">温州市国际体育舞蹈协会</option>
-                                            <option value="温州市围棋协会">温州市围棋协会</option>
-                                            <option value="温州市海陆空模型运动协会">温州市海陆空模型运动协会</option>
-                                            <option value="温州市跆拳道协会">温州市跆拳道协会</option>
-                                            <option value="温州市游泳协会">温州市游泳协会</option>
-                                            <option value="温州市乒乓球协会">温州市乒乓球协会</option>
-                                            <option value="温州市路跑协会">温州市路跑协会</option>
-                                            <option value="温州市武术协会">温州市武术协会</option>
-                                            <option value="温州市信鸽协会">温州市信鸽协会</option>
-                                            <option value="温州市冬泳协会">温州市冬泳协会</option>
-                                            <option value="温州市救生协会">温州市救生协会</option>
-                                            <option value="温州市航空运动协会">温州市航空运动协会</option>
-                                            <option value="温州市温州南拳协会">温州市温州南拳协会</option>
-                                            <option value="温州市龙舟协会">温州市龙舟协会</option>
-                                            <option value="温州市篮球协会">温州市篮球协会</option>
-                                            <option value="温州市篮球发展协会">温州市篮球发展协会</option>
-                                            <option value="温州市电子竞技运动协会">温州市电子竞技运动协会</option>
-                                            <option value="温州市电子竞技运动发展协会">温州市电子竞技运动发展协会</option>
-                                            <option value="温州市户外休闲运动协会">温州市户外休闲运动协会</option>
-                                            <option value="温州市中华韵形体运动协会">温州市中华韵形体运动协会</option>
-                                            <option value="温州市深蓝摩托艇运动协会">温州市深蓝摩托艇运动协会</option>
-                                            <option value="温州市瑜伽协会">温州市瑜伽协会</option>
-                                            <option value="温州市羽毛球协会">温州市羽毛球协会</option>
-                                            <option value="温州市健身舞协会">温州市健身舞协会</option>
-                                            <option value="温州市健美健身协会">温州市健美健身协会</option>
-                                            <option value="温州市户外运动协会">温州市户外运动协会</option>
-                                            <option value="温州市太极拳运动协会">温州市太极拳运动协会</option>
-                                            <option value="温州市幼儿体育协会">温州市幼儿体育协会</option>
-                                            <option value="温州市啦啦操与健美操协会">温州市啦啦操与健美操协会</option>
-                                            <option value="温州市柔道协会">温州市柔道协会</option>
-                                            <option value="温州市体育舞蹈运动协会">温州市体育舞蹈运动协会</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group dateDiv"  style="margin-left: 20px;width: 70px;float: left">
+                                                    <select class="form-control" id="groupOpt">
+                                                        <option value="全部">全部</option>
+                                                        <option value="温州市象棋协会">温州市象棋协会</option>
+                                                        <option value="温州市社会体育指导员协会">温州市社会体育指导员协会</option>
+                                                        <option value="温州马拉松协会">温州马拉松协会</option>
+                                                        <option value="温州市空竹运动协会">温州市空竹运动协会</option>
+                                                        <option value="温州市排舞广场舞协会">温州市排舞广场舞协会</option>
+                                                        <option value="温州市山地户外运动协会">温州市山地户外运动协会</option>
+                                                        <option value="温州市体育场馆协会">温州市体育场馆协会</option>
+                                                        <option value="温州市轮滑运动协会">温州市轮滑运动协会</option>
+                                                        <option value="温州市保龄球运动协会">温州市保龄球运动协会</option>
+                                                        <option value="温州市风筝协会">温州市风筝协会</option>
+                                                        <option value="温州市桥牌协会">温州市桥牌协会</option>
+                                                        <option value="温州市登山协会">温州市登山协会</option>
+                                                        <option value="温州市钓鱼协会">温州市钓鱼协会</option>
+                                                        <option value="温州市自行车运动协会">温州市自行车运动协会</option>
+                                                        <option value="温州市无线电定向运动协会">温州市无线电定向运动协会</option>
+                                                        <option value="温州市国际体育舞蹈协会">温州市国际体育舞蹈协会</option>
+                                                        <option value="温州市围棋协会">温州市围棋协会</option>
+                                                        <option value="温州市海陆空模型运动协会">温州市海陆空模型运动协会</option>
+                                                        <option value="温州市跆拳道协会">温州市跆拳道协会</option>
+                                                        <option value="温州市游泳协会">温州市游泳协会</option>
+                                                        <option value="温州市乒乓球协会">温州市乒乓球协会</option>
+                                                        <option value="温州市路跑协会">温州市路跑协会</option>
+                                                        <option value="温州市武术协会">温州市武术协会</option>
+                                                        <option value="温州市信鸽协会">温州市信鸽协会</option>
+                                                        <option value="温州市冬泳协会">温州市冬泳协会</option>
+                                                        <option value="温州市救生协会">温州市救生协会</option>
+                                                        <option value="温州市航空运动协会">温州市航空运动协会</option>
+                                                        <option value="温州市温州南拳协会">温州市温州南拳协会</option>
+                                                        <option value="温州市龙舟协会">温州市龙舟协会</option>
+                                                        <option value="温州市篮球协会">温州市篮球协会</option>
+                                                        <option value="温州市篮球发展协会">温州市篮球发展协会</option>
+                                                        <option value="温州市电子竞技运动协会">温州市电子竞技运动协会</option>
+                                                        <option value="温州市电子竞技运动发展协会">温州市电子竞技运动发展协会</option>
+                                                        <option value="温州市户外休闲运动协会">温州市户外休闲运动协会</option>
+                                                        <option value="温州市中华韵形体运动协会">温州市中华韵形体运动协会</option>
+                                                        <option value="温州市深蓝摩托艇运动协会">温州市深蓝摩托艇运动协会</option>
+                                                        <option value="温州市瑜伽协会">温州市瑜伽协会</option>
+                                                        <option value="温州市羽毛球协会">温州市羽毛球协会</option>
+                                                        <option value="温州市健身舞协会">温州市健身舞协会</option>
+                                                        <option value="温州市健美健身协会">温州市健美健身协会</option>
+                                                        <option value="温州市户外运动协会">温州市户外运动协会</option>
+                                                        <option value="温州市太极拳运动协会">温州市太极拳运动协会</option>
+                                                        <option value="温州市幼儿体育协会">温州市幼儿体育协会</option>
+                                                        <option value="温州市啦啦操与健美操协会">温州市啦啦操与健美操协会</option>
+                                                        <option value="温州市柔道协会">温州市柔道协会</option>
+                                                        <option value="温州市体育舞蹈运动协会">温州市体育舞蹈运动协会</option>
+                                                    </select>
+                                                </div>
+                                            </div><!-- /.col-lg-6 -->
+                                            <div class="col-lg-4">
+                                                <div class="input-group">
+                                        <span class="input-group-addon">
+                                                           结对社区
+                                        </span>
+                                                    <select class="form-control" id="communityOpt">
+                                                        <option value="全部">全部</option>
+                                                    </select>
+                                                </div>
+                                            </div><!-- /.col-lg-6 -->
+                                            <div class="col-lg-4">
+                                                <div class="input-group dateDiv">
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar">开始时间</i>
                                         </span>
-                                        <input type="text" name="startDate" id="startDate"  class="form-control dateInput" required="" style="width: 200px">
-                                    </div>
-                                    <div class="input-group dateDiv" style="margin-left: 20px;width: 70px; float: left;">
+                                                    <input type="text" name="startDate" id="startDate"
+                                                           class="form-control dateInput" required=""
+                                                           style="width: 200px">
+                                                </div>
+                                            </div><!-- /.col-lg-6 -->
+                                            <div class="col-lg-4">
+                                                <div class="input-group dateDiv">
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar">结束时间</i>
                                         </span>
-                                        <input type="text" name="endDate" id="endDate" class="form-control dateInput" required="" style="width: 200px">
-                                    </div>
-                                    <div class="input-group">
-                                        <button class="btn btn-success" id="submitOpt" onclick="flushTable()">确认</button>
+                                                    <input type="text" name="endDate" id="endDate"
+                                                           class="form-control dateInput" required=""
+                                                           style="width: 200px">
+                                                </div>
+                                            </div>
+
+                                        </div><!-- /.row -->
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="input-group">
+                                                    <button class="btn btn-success" id="submitOpt" onclick="flushTable()">确认
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -113,8 +145,8 @@
                                     <tr>
 
                                         <th>#</th>
-                                        <th>社团名称 </th>
-                                        <th>活动时间 </th>
+                                        <th>社团名称</th>
+                                        <th>活动时间</th>
                                         <th>活动地点</th>
                                         <th>参与人数</th>
                                         <th>活动图片</th>
@@ -165,7 +197,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="gridSystemModalLabel-1">活动删除</h4>
             </div>
             <div class="modal-body">
@@ -194,7 +227,7 @@
             forceParse: false,
             calendarWeeks: true,
             autoclose: true,
-            language:"zh-CN"
+            language: "zh-CN"
         });
     });
 
@@ -202,27 +235,33 @@
         var startDate = $("#startDate").val();
         var endDate = $("#endDate").val();
         var groupOpt = $("#groupOpt").val();
-        $.post("/activity/optList",{startDate:startDate, endDate:endDate,groupOpt:groupOpt}, function (data) {
+        var communityOpt = $("#communityOpt").val();
+        $.post("/activity/optList", {
+            startDate: startDate,
+            endDate: endDate,
+            groupOpt: groupOpt,
+            communityOpt: communityOpt
+        }, function (data) {
             if (!data.success) {
                 alert(data.msg);
             }
             var html = "";
             data.activityList.forEach(function (data) {
                 html += "<tr>";
-                html += "<td>"+data.id+"</td>";
-                html += "<td>"+data.groupName+"</td>";
-                html += "<td>"+data.actDate+"</td>";
-                html += "<td>"+data.actAddr+"</td>";
-                html += "<td>"+data.actPeopleNum+"</td>";
-                html += "<td><img src='/static/img/"+data.actImg1+"' style='width: 30px;height: 30px'> </td>";
-                html += "<td>"+data.actUser+"</td>";
-                html += "<td>"+data.actUserTel+"</td>";
-                html += "<td>"+data.desc+"</td>";
+                html += "<td>" + data.id + "</td>";
+                html += "<td>" + data.groupName + "</td>";
+                html += "<td>" + data.actDate + "</td>";
+                html += "<td>" + data.actAddr + "</td>";
+                html += "<td>" + data.actPeopleNum + "</td>";
+                html += "<td><img src='/static/img/" + data.actImg1 + "' style='width: 30px;height: 30px'> </td>";
+                html += "<td>" + data.actUser + "</td>";
+                html += "<td>" + data.actUserTel + "</td>";
+                html += "<td>" + data.desc + "</td>";
 
 
-                html += "<td><a href=\"/activity/detail-info/?actId="+data.id+"\" target=\"_blank\">查看</a></td>";
-                html += "<td><a href=\"/activity/edit-act/?actId="+data.id+"\" target=\"_blank\">编辑</a></td>";
-                html += "<td><a class=\"list-group-item-danger\"  data-toggle=\"modal\" data-actId=\""+data.id+"\", data-target=\".bs-example-modal-lg-1\">删除</a></td>";
+                html += "<td><a href=\"/activity/detail-info/?actId=" + data.id + "\" target=\"_blank\">查看</a></td>";
+                html += "<td><a href=\"/activity/edit-act/?actId=" + data.id + "\" target=\"_blank\">编辑</a></td>";
+                html += "<td><a class=\"list-group-item-danger\"  data-toggle=\"modal\" data-actId=\"" + data.id + "\", data-target=\".bs-example-modal-lg-1\">删除</a></td>";
                 html += "</tr>";
             });
             $("#actDataBody").html(html);
@@ -230,10 +269,12 @@
         });
 
     }
+
     function downloadExl() {
-        window.location.href="/activity/exportActivity";
+        window.location.href = "/activity/exportActivity";
     }
-    $(document).on('show.bs.modal','.bs-example-modal-lg-1', function (event) {
+
+    $(document).on('show.bs.modal', '.bs-example-modal-lg-1', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var actId = button.data('actid'); // Extract info from data-* attributes
         var modal = $(this);
@@ -245,7 +286,7 @@
         /*;*/
         $("#delActBtn").click(function (event) {
             var actId = $("#actId").val();
-            $.post("/activity/del",{actId:actId}, function (data) {
+            $.post("/activity/del", {actId: actId}, function (data) {
                 if (!data.success) {
                     alert("删除失败: " + data.msg);
                 } else {

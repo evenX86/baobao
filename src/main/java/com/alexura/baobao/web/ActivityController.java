@@ -250,7 +250,7 @@ public class ActivityController {
 
     @PostMapping("/optList")
     @ResponseBody
-    public ResponseEntity<?> optList(String startDate, String endDate, String groupOpt, HttpSession session) {
+    public ResponseEntity<?> optList(String startDate, String endDate, String groupOpt, String communityOpt, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date d1 = null;
