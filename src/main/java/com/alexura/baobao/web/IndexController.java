@@ -55,13 +55,8 @@ public class IndexController {
         if (userEntity == null) {
             return "error";
         }
-        List<ActivityEntity> activityEntityList = new ArrayList<>();
-        if ("admin".equals(account)) {
-            activityEntityList = dataService.listActivity();
-        } else {
-            activityEntityList  = dataService.listActivity(userEntity.getGroupName());
-        }
-        model.addAttribute("dataList", activityEntityList);
+        List<String>communityList = dataService.getCommunityList();
+        model.addAttribute("communityList", communityList);
         return "act-detail";
     }
 

@@ -33,5 +33,7 @@ public interface ActivityMapper {
 
     List<ActivityEntity> getAllByGroup(@Param("groupName") String groupName);
 
-    List<ActivityEntity> queryActList(@Param("st") Date d1, @Param("et") Date d2, @Param("search") String groupOpt);
+    List<ActivityEntity> queryActList(@Param("st") Date d1, @Param("et") Date d2, @Param("search") String groupOpt, @Param("comm") String comm);
+
+    List<String> getCommunityList();
 }

@@ -27,5 +27,7 @@ public interface DataService {
 
     void updateActivity(ActivityEntity activityEntity);
 
-    List<ActivityEntity> queryActByOpt(Date d1, Date d2, String groupOpt, UserEntity userEntity);
+    List<ActivityEntity> queryActByOpt(Date d1, Date d2, String groupOpt,String communityOpt, UserEntity userEntity);
+
+    List<String> getCommunityList();
 }

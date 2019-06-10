@@ -79,13 +79,21 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public List<ActivityEntity> queryActByOpt(Date d1, Date d2, String groupOpt, UserEntity userEntity) {
+    public List<ActivityEntity> queryActByOpt(Date d1, Date d2, String groupOpt, String communityOpt, UserEntity userEntity) {
         if ("全部".equals(groupOpt)) {
             groupOpt = null;
+        }
+        if ("全部".equals(communityOpt)) {
+            communityOpt = null;
         }
         if (!"admin".equals(userEntity.getAccount())) {
             groupOpt = userEntity.getGroupName();
         }
-        return activityMapper.queryActList(d1,d2,groupOpt);
+        return activityMapper.queryActList(d1,d2,groupOpt,communityOpt);
+    }
+
+    @Override
+    public List<String> getCommunityList() {
+        return activityMapper.getCommunityList();
     }
 }

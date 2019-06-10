@@ -56,6 +56,9 @@
         <if test="search != null">
             AND group_name like #{search}
         </if>
+        <if test="comm != null">
+            AND community like #{comm}
+        </if>
         <if test="st != null">
             AND act_date >= #{st}
         </if>
@@ -75,6 +78,10 @@
 
     <select id="countAll" resultType="java.lang.Long" >
        SELECT count(*) from alex_activity where status=1
+    </select>
+
+    <select id="getCommunityList" resultType="java.lang.String" >
+       SELECT distinct community from alex_activity where status=1
     </select>
 
     <select id="countAllGroup" resultType="java.lang.Long" >
