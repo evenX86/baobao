@@ -55,7 +55,7 @@
                             <span class="clear"> <span class="block m-t-xs" th:text="${#session.getAttribute('user')}"> <strong class="font-bold"></strong>
                             </span>
                                 <span class="text-muted text-xs block" th:if="${session.user == 'admin'}">管理员 </span>
-                                <span class="text-muted text-xs block" th:unless="${session.user == 'admin'}">普通用户 </span>
+                                <span class="text-muted text-xs block" th:unless="${session.user == 'admin'}">社团用户 </span>
                             </span> </a>
                 </div>
             </li>

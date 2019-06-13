@@ -85,7 +85,7 @@
     </select>
 
     <select id="countAllGroup" resultType="java.lang.Long" >
-       SELECT count(DISTINCT group_name) from alex_activity WHERE status=1
+       SELECT count(DISTINCT group_name) from alex_user WHERE status=1
     </select>
 
     <insert id="insert" parameterType="com.alexura.baobao.entity.UserEntity" >
