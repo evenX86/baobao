@@ -25,9 +25,6 @@ public interface UserMapper {
 
     UserEntity getUserByAccountAndPasswd(@Param("account") String account, @Param("passwd") String passwd);
 
-
-    UserEntity findUserByAccount(@Param("account") String account);
-
     void updateUser(UserEntity userEntity);
 
     UserEntity getUser(@Param("account") String account);

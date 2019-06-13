@@ -23,7 +23,7 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public void addUser(UserEntity userEntity) {
-        UserEntity old = getUserByAccount(userEntity.getAccount());
+        UserEntity old = getUser(userEntity.getAccount());
         if (old != null) {
             return;
         }
@@ -52,10 +52,6 @@ public class UserServiceImpl  implements UserService {
         return userMapper.getUser(account);
     }
 
-    private UserEntity getUserByAccount(String account) {
-        return userMapper.findUserByAccount(account);
-
-    }
 
     @Override
     public UserEntity login(String account, String passwd) {
