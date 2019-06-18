@@ -64,4 +64,10 @@ public class UserServiceImpl  implements UserService {
 
         userMapper.updateUser(userEntity);
     }
+
+    @Override
+    public void deleteUser(UserEntity entity) {
+        userMapper.deleteUser(entity);
+
+    }
 }

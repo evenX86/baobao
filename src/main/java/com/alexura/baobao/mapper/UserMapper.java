@@ -28,4 +28,6 @@ public interface UserMapper {
     void updateUser(UserEntity userEntity);
 
     UserEntity getUser(@Param("account") String account);
+
+    void deleteUser(UserEntity entity);
 }

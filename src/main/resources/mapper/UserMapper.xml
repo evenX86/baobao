@@ -79,4 +79,14 @@
         WHERE
         id =#{id}
     </delete>
+
+    <update id="deleteUser" parameterType="com.alexura.baobao.entity.UserEntity" >
+        UPDATE
+        alex_user
+        SET
+        `status`=-1,
+        modified = now()
+        WHERE
+        id = #{id}
+    </update>
 </mapper>

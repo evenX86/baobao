@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +82,39 @@ public class UserController {
             entity.setUserTel(userTel);
             entity.setPasswd(passwd);
             userService.updateUser(entity);
+        } catch (Exception e) {
+            result.put("success", false);
+            result.put("msg", "系统异常");
+            log.error("修改用户信息异常", e);
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/del")
+    public ResponseEntity<?> del(String uid, HttpSession session) {
+        Map<String, Object> result = new HashMap<>();
+        if (!StringUtils.isNumeric(uid)) {
+            result.put("success",false);
+            result.put("msg", "用户数据异常");
+            return ResponseEntity.ok(result);
+        }
+        Integer uuid = Integer.valueOf(uid);
+        try {
+            UserEntity oldUserEntity =  userService.getUserByAccount(uuid);
+            result.put("success", true);
+            result.put("uid", uid);
+            if (oldUserEntity == null) {
+                result.put("success", false);
+                result.put("msg", "用户不存在");
+                log.error("用户不存在: " + uid);
+                return ResponseEntity.ok(result);
+            }
+            UserEntity entity = new UserEntity();
+            entity.setId(uuid);
+            userService.deleteUser(entity);
         } catch (Exception e) {
             result.put("success", false);
             result.put("msg", "系统异常");

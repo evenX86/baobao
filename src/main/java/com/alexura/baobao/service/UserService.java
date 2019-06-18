@@ -22,4 +22,6 @@ public interface UserService {
     UserEntity login(String account, String passwd);
 
     public void updateUser(UserEntity userEntity);
+
+    void deleteUser(UserEntity entity);
 }
