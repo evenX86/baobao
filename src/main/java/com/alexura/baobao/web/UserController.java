@@ -78,11 +78,21 @@ public class UserController {
             }
             UserEntity entity = new UserEntity();
             entity.setId(uuid);
-            entity.setUserName(userName);
-            entity.setUserTel(userTel);
-            entity.setPasswd(passwd);
-            entity.setCommunity1(community1);
-            entity.setCommunity2(community2);
+            if (StringUtils.isNotBlank(userName)) {
+                entity.setUserName(userName);
+            }
+            if (StringUtils.isNotBlank(userTel)) {
+                entity.setUserTel(userTel);
+            }
+            if (StringUtils.isNotBlank(passwd)) {
+                entity.setPasswd(passwd);
+            }
+            if (StringUtils.isNotBlank(community1)) {
+                entity.setCommunity1(community1);
+            }
+            if (StringUtils.isNotBlank(community2)) {
+                entity.setCommunity2(community2);
+            }
             userService.updateUser(entity);
         } catch (Exception e) {
             result.put("success", false);
