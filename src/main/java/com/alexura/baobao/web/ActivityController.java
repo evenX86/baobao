@@ -140,7 +140,7 @@ public class ActivityController {
             activityEntity.setActImg4(imageURL4);
         }
         dataService.addActivity(activityEntity);
-        return "redirect:/act-detail";
+        return "redirect:/act-list";
     }
 
     @PostMapping("/doEdit-act")
@@ -173,7 +173,7 @@ public class ActivityController {
             activityEntity.setActImg4(imageURL4);
         }
         dataService.updateActivity(activityEntity);
-        return "redirect:/act-detail";
+        return "redirect:/act-list";
     }
 
     @PostMapping("/activityData")
