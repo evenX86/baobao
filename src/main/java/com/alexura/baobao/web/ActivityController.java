@@ -62,8 +62,8 @@ public class ActivityController {
             activityEntity.setGroupName("未填写社团信息");
         }
         List<String> communityList = new ArrayList<>();
-        communityList.add(entity.getCommunity1() == null ? "未填写结对社区": entity.getCommunity1());
-        communityList.add(entity.getCommunity2() == null ? "未填写结对社区": entity.getCommunity2());
+        communityList.add( StringUtils.isBlank(entity.getCommunity1())? "未填写结对社区": entity.getCommunity1());
+        communityList.add( StringUtils.isBlank(entity.getCommunity2())? "未填写结对社区": entity.getCommunity2());
         model.addAttribute("communityList", communityList);
         model.addAttribute("activity", activityEntity);
         model.addAttribute("groupName", activityEntity.getGroupName());
