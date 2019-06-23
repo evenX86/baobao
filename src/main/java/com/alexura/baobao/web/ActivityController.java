@@ -62,6 +62,10 @@ public class ActivityController {
                 activityEntity.setGroupName("默认社团");
             }
         }
+        List<String> communityList = new ArrayList<>();
+        communityList.add("111");
+        communityList.add("333");
+        model.addAttribute("communityList", communityList);
         model.addAttribute("activity", activityEntity);
         model.addAttribute("groupName", activityEntity.getGroupName());
         return "add-act";
@@ -252,6 +256,9 @@ public class ActivityController {
     @ResponseBody
     public ResponseEntity<?> optList(String startDate, String endDate, String groupOpt, String communityOpt, HttpSession session) {
         Map<String, Object> result = new HashMap<>();
+        List<String> communityList = new ArrayList<>();
+        communityList.add("111");
+        communityList.add("333");
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date d1 = null;
         Date d2 = null;
@@ -279,6 +286,7 @@ public class ActivityController {
             List<ActivityEntity> activityEntities =  dataService.queryActByOpt(d1, d2, groupOpt,communityOpt, userEntity);
             result.put("activityList", activityEntities);
             result.put("actSize", activityEntities.size());
+            result.put("communityList", communityList);
         } catch (Exception e) {
             log.error("日期转换出错: " ,e);
             result.put("msg","日期格式错误");

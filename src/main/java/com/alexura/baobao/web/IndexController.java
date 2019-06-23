@@ -48,7 +48,7 @@ public class IndexController {
         model.addAttribute("groupDataList",  mapList);
         return "index";
     }
-    @RequestMapping("/act-detail")
+    @RequestMapping("/act-list")
     public String index(ModelMap model, HttpSession session) {
         String account = (String) session.getAttribute(SESSION_KEY);
         UserEntity userEntity = userService.getUser(account);
@@ -57,7 +57,7 @@ public class IndexController {
         }
         List<String>communityList = dataService.getCommunityList();
         model.addAttribute("communityList", communityList);
-        return "act-detail";
+        return "act-list";
     }
 
     @RequestMapping("/feedback")
