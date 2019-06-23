@@ -16,10 +16,23 @@ public interface UserMapper {
 
     List<UserEntity> getAll();
 
+    /**
+     * 插入新用户
+     * @param user
+     */
     void insert(UserEntity user);
 
+    /**
+     * 统计用户数
+     * @return
+     */
     Long countAll();
 
+    /**
+     * 通过用户id查找用户
+     * @param id
+     * @return
+     */
     UserEntity getUserByAccount(@Param("id") Integer id);
 
 

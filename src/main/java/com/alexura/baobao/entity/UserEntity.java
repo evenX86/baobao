@@ -44,6 +44,9 @@ public class UserEntity {
     private String passwd;
     private Date created;
     private Date modified;
+    private String community1;
+    private String community2;
+
 
     public Integer getId() {
         return id;
@@ -103,6 +106,22 @@ public class UserEntity {
 
     public Date getModified() {
         return modified;
+    }
+
+    public String getCommunity1() {
+        return community1;
+    }
+
+    public void setCommunity1(String community1) {
+        this.community1 = community1;
+    }
+
+    public String getCommunity2() {
+        return community2;
+    }
+
+    public void setCommunity2(String community2) {
+        this.community2 = community2;
     }
 
     public void setModified(Date modified) {

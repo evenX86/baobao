@@ -52,6 +52,8 @@
                                         <th>联系人 </th>
                                         <th>联系方式 </th>
                                         <th>所属社团</th>
+                                        <th>结对社区</th>
+                                        <th>结对社区2</th>
                                         <th>创建时间</th>
                                         <th>修改时间</th>
                                         <th>操作</th>
@@ -64,6 +66,8 @@
                                         <td th:text="${data.getUserName()}">...</td>
                                         <td th:text="${data.getUserTel()}">...</td>
                                         <td th:text="${data.getGroupName()}">...</td>
+                                        <td th:text="${data.getCommunity1()}">...</td>
+                                        <td th:text="${data.getCommunity2()}">...</td>
                                         <td th:text="${data.getCreated()}">...</td>
                                         <td th:text="${data.getModified()}">...</td>
                                         <td>
@@ -101,6 +105,14 @@
                     <div class="form-group">
                         <label for="lianxiren" class="control-label">联系人:</label>
                         <input class="form-control" name="userName" id="lianxiren" type="text" autocomplete="off" >
+                    </div>
+                    <div class="form-group">
+                        <label for="community1" class="control-label">结对社区:</label>
+                        <input class="form-control" name="userName" id="community1" type="text" autocomplete="off" >
+                    </div>
+                    <div class="form-group">
+                        <label for="community2" class="control-label">结对社区2:</label>
+                        <input class="form-control" name="userName" id="community2" type="text" autocomplete="off" >
                     </div>
                     <div class="form-group">
                         <label for="lianxifangshi" class="control-label">联系方式:</label>
@@ -165,9 +177,13 @@
         modal.find('.modal-body #uid1').val(userId);
     });
     function doSubmit() {
+        var passwd = $("#passwd").val();
+        var lianxiren = $("#lianxiren").val();
+        var lianxifangshi = $("#lianxifangshi").val();
+        var community1 = $("#community1").val();
+        var community2 = $("#community2").val();
         var uid = $("#uid").val();
-        console.log(uid);
-        $.post("/user/del",{uid:uid}, function (data) {
+        $.post("/user/edit",{uid:uid, userTel:lianxifangshi,userName:lianxiren,passwd:passwd,community1:community1,community2:community2}, function (data) {
             if (!data.success) {
                 alert("修改用户信息失败");
             } else {
@@ -176,7 +192,6 @@
             }
         });
     }
-
     function delSubmit() {
         var uid = $("#uid1").val();
         $.post("/user/del",{uid:uid}, function (data) {

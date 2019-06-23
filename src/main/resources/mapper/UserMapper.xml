@@ -10,10 +10,12 @@
         <result property="groupName"  column = "group_name" jdbcType="VARCHAR"/>
         <result property="created"  column = "created" jdbcType="VARCHAR"/>
         <result property="modified"  column = "modified" jdbcType="VARCHAR"/>
+        <result property="community1"  column = "community1" jdbcType="VARCHAR"/>
+        <result property="community2"  column = "community2" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List" >
-        `id`,`account`,user_name,user_tel,group_name,created,modified
+        `id`,`account`,user_name,user_tel,group_name,created,modified,community1,community2
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap"  >
@@ -56,9 +58,9 @@
 
 
     <insert id="insert" parameterType="com.alexura.baobao.entity.UserEntity" >
-        INSERT INTO alex_user(`account`,user_name,user_tel,passwd,group_name,created,modified)
+        INSERT INTO alex_user(`account`,user_name,user_tel,passwd,group_name,created,modified,`community1`,`community2`)
         VALUES
-        (#{account}, #{userName},#{userTel},#{passwd},#{groupName}, now(),now())
+        (#{account}, #{userName},#{userTel},#{passwd},#{groupName}, now(),now(),#{community1},#{community2})
     </insert>
 
     <update id="updateUser" parameterType="com.alexura.baobao.entity.UserEntity" >
@@ -68,17 +70,12 @@
         <if test="userName != null">user_name = #{userName},</if>
         <if test="userTel != null">user_tel = #{userTel},</if>
         <if test="passwd != null">passwd = #{passwd},</if>
+        <if test="community1 != null">community1 = #{community1},</if>
+        <if test="community2 != null">community2 = #{community2},</if>
         modified = now()
         WHERE
         id = #{id}
     </update>
-
-    <delete id="delete" parameterType="java.lang.Long" >
-        DELETE FROM
-        alex_user
-        WHERE
-        id =#{id}
-    </delete>
 
     <update id="deleteUser" parameterType="com.alexura.baobao.entity.UserEntity" >
         UPDATE

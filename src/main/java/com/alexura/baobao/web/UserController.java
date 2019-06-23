@@ -56,7 +56,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/edit")
-    public ResponseEntity<?> edit(String uid, String userName, String userTel, String passwd) {
+    public ResponseEntity<?> edit(String uid, String userName, String userTel, String passwd, String community1,String community2) {
         Map<String, Object> result = new HashMap<>();
         if (!StringUtils.isNumeric(uid)) {
             result.put("success",false);
@@ -81,6 +81,8 @@ public class UserController {
             entity.setUserName(userName);
             entity.setUserTel(userTel);
             entity.setPasswd(passwd);
+            entity.setCommunity1(community1);
+            entity.setCommunity2(community2);
             userService.updateUser(entity);
         } catch (Exception e) {
             result.put("success", false);
