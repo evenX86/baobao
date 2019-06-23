@@ -55,16 +55,15 @@ public class ActivityController {
         UserEntity entity =  userService.getUserByAccount(uid);
         ActivityEntity activityEntity = new ActivityEntity();
         if (entity == null) {
-            activityEntity.setGroupName("默认社团");
-        } else {
-            activityEntity.setGroupName(entity.getGroupName());
-            if (StringUtils.isBlank(entity.getGroupName())) {
-                activityEntity.setGroupName("默认社团");
-            }
+            return "error";
+        }
+        activityEntity.setGroupName(entity.getGroupName());
+        if (StringUtils.isBlank(entity.getGroupName())) {
+            activityEntity.setGroupName("未填写社团信息");
         }
         List<String> communityList = new ArrayList<>();
-        communityList.add("111");
-        communityList.add("333");
+        communityList.add(entity.getCommunity1() == null ? "未填写结对社区": entity.getCommunity1());
+        communityList.add(entity.getCommunity2() == null ? "未填写结对社区": entity.getCommunity2());
         model.addAttribute("communityList", communityList);
         model.addAttribute("activity", activityEntity);
         model.addAttribute("groupName", activityEntity.getGroupName());
