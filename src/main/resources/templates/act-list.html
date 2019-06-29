@@ -261,14 +261,24 @@
             },
             columns:[
                 {data:"id"},
-                {data:"groupName"},
-                {data:"actDate"},
-                {data:"actAddr"},
-                {data:"actPeopleNum"},
-                {data:"actUser"},
-                {data:"actUserTel"},
-                {data:"community"}
-            ]
+                {data: "groupName"},
+                {data: "actDate"},
+                {data: "actAddr"},
+                {data: "actPeopleNum"},
+                {data: "actUser"},
+                {data: "actUserTel"},
+                {data: "community"},
+                {data: null}
+            ],
+            columnDefs:[{
+                targets: 8,
+                render: function (data) {
+                    return "<a href=\"/activity/detail-info/?actId=" + data.id + "\" target=\"_blank\">查看</a>&nbsp" +
+                        "<a href=\"/activity/edit-act/?actId=" + data.id + "\" target=\"_blank\">编辑</a>&nbsp" +
+                        "<a class=\"list-group-item-danger\"  data-toggle=\"modal\" data-actId=\"" + data.id + "\", data-target=\".bs-example-modal-lg-1\">删除</a>"
+                }
+            }]
+
         });
     });
 
@@ -300,9 +310,9 @@
                 html += "<td>" + data.community + "</td>";
 
 
-                html += "<td><a href=\"/activity/detail-info/?actId=" + data.id + "\" target=\"_blank\">查看</a></td>";
-                html += "<td><a href=\"/activity/edit-act/?actId=" + data.id + "\" target=\"_blank\">编辑</a></td>";
-                html += "<td><a class=\"list-group-item-danger\"  data-toggle=\"modal\" data-actId=\"" + data.id + "\", data-target=\".bs-example-modal-lg-1\">删除</a></td>";
+                html += "<td><a href=\"/activity/detail-info/?actId=" + data.id + "\" target=\"_blank\">查看</a>&nbsp";
+                html += "<td></td>";
+                html += "<td></td>";
                 html += "</tr>";
             });
             $("#actDataBody").html(html);
