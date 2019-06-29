@@ -282,7 +282,7 @@ public class ActivityController {
                 }
             }
             List<ActivityEntity> activityEntities =  dataService.queryActByOpt(d1, d2, groupOpt,communityOpt, userEntity);
-            result.put("activityList", activityEntities);
+            result.put("data", activityEntities);
             result.put("actSize", activityEntities.size());
             result.put("communityList", communityList);
         } catch (Exception e) {

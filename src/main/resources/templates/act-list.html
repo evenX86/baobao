@@ -141,7 +141,7 @@
                         </div>
                         <div class="ibox-content" style="margin-top: 20px">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                     <tr>
 
@@ -150,7 +150,6 @@
                                         <th>活动时间</th>
                                         <th>活动地点</th>
                                         <th>参与人数</th>
-                                        <th>活动图片</th>
                                         <th>活动联系人</th>
                                         <th>联系方式</th>
                                         <th>结对社区</th>
@@ -221,7 +220,7 @@
 <span th:include="common_js:: commonOnLoadJs"></span>
 <script>
     $(document).ready(function () {
-        flushTable();
+        //flushTable();
         $('.dateDiv .dateInput').datepicker({
             todayBtn: "linked",
             keyboardNavigation: false,
@@ -229,6 +228,23 @@
             calendarWeeks: true,
             autoclose: true,
             language: "zh-CN"
+        });
+
+        $('.dataTables-example').DataTable({
+            ajax:{
+                url: '/activity/optList',
+                type: "POST"
+            },
+            columns:[
+                {data:"id"},
+                {data:"groupName"},
+                {data:"actDate"},
+                {data:"actAddr"},
+                {data:"actPeopleNum"},
+                {data:"actUser"},
+                {data:"actUserTel"},
+                {data:"community"}
+            ]
         });
     });
 
@@ -298,5 +314,11 @@
         });
     });
 </script>
+<style>
+    .dataTables_filter label {
+        margin-right: 5px;
+
+    }
+</style>
 </body>
 </html>
