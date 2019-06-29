@@ -271,55 +271,28 @@
                 {data: null}
             ],
             columnDefs:[{
+                targets: 2,
+                render:function (data) {
+                    if (data === undefined) {
+                        return "-"
+                    } else {
+                        return data.replace("00:00:00", "");
+                    }
+                }
+            },{
                 targets: 8,
                 render: function (data) {
                     return "<a href=\"/activity/detail-info/?actId=" + data.id + "\" target=\"_blank\">查看</a>&nbsp" +
                         "<a href=\"/activity/edit-act/?actId=" + data.id + "\" target=\"_blank\">编辑</a>&nbsp" +
                         "<a class=\"list-group-item-danger\"  data-toggle=\"modal\" data-actId=\"" + data.id + "\", data-target=\".bs-example-modal-lg-1\">删除</a>"
                 }
-            }]
+            }],
+            order:[
+                [1, "desc"]
+            ]
 
         });
     });
-
-    function flushTable() {
-        var startDate = $("#startDate").val();
-        var endDate = $("#endDate").val();
-        var groupOpt = $("#groupOpt").val();
-        var communityOpt = $("#communityOpt").val();
-        $.post("/activity/optList", {
-            startDate: startDate,
-            endDate: endDate,
-            groupOpt: groupOpt,
-            communityOpt: communityOpt
-        }, function (data) {
-            if (!data.success) {
-                alert(data.msg);
-            }
-            var html = "";
-            data.activityList.forEach(function (data) {
-                html += "<tr>";
-                html += "<td>" + data.id + "</td>";
-                html += "<td>" + data.groupName + "</td>";
-                html += "<td>" + data.actDate + "</td>";
-                html += "<td>" + data.actAddr + "</td>";
-                html += "<td>" + data.actPeopleNum + "</td>";
-                html += "<td><img src='/static/img/" + data.actImg1 + "' style='width: 30px;height: 30px'> </td>";
-                html += "<td>" + data.actUser + "</td>";
-                html += "<td>" + data.actUserTel + "</td>";
-                html += "<td>" + data.community + "</td>";
-
-
-                html += "<td><a href=\"/activity/detail-info/?actId=" + data.id + "\" target=\"_blank\">查看</a>&nbsp";
-                html += "<td></td>";
-                html += "<td></td>";
-                html += "</tr>";
-            });
-            $("#actDataBody").html(html);
-            $("#numActTag").text("共 " + data.actSize + " 条记录");
-        });
-
-    }
 
     function downloadExl() {
         window.location.href = "/activity/exportActivity";
