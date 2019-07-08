@@ -129,7 +129,7 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="input-group">
-                                                    <button class="btn btn-success" id="submitOpt" onclick="flushTable()">确认
+                                                    <button class="btn btn-success" id="submitOpt">确认
                                                     </button>
                                                 </div>
                                             </div>
@@ -230,7 +230,10 @@
             language: "zh-CN"
         });
 
-        $('.dataTables-example').DataTable({
+
+
+
+         var table = $('.dataTables-example').DataTable({
             language: {
                 "sProcessing":   "处理中...",
                 "sLengthMenu":   "显示 _MENU_ 项结果",
@@ -257,7 +260,14 @@
             },
             ajax:{
                 url: '/activity/optList',
-                type: "POST"
+                type: "POST",
+                data: function (d) {
+                    d.startDate= $("#startDate").val(),
+                    d.endDate= $("#endDate").val(),
+                    d.groupOpt= $("#groupOpt").val(),
+                    d.communityOpt= $("#communityOpt").val()
+
+                }
             },
             columns:[
                 {data:"id"},
@@ -291,6 +301,11 @@
                 [1, "desc"]
             ]
 
+        });
+
+        $("#submitOpt").click(function(){
+
+            table.ajax.reload();
         });
     });
 
