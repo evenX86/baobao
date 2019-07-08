@@ -40,12 +40,6 @@ public class IndexController {
         model.addAttribute("userCnt", userService.countAll());
         model.addAttribute("dataList", dataService.listActivity());
         model.addAttribute("visitCnt", atomicInteger.incrementAndGet());
-        List<Map<String, Object>> mapList = dataService.queryGroupNum();
-        int id = 1;
-        for (Map<String, Object> map : mapList) {
-            map.put("id", id ++);
-        }
-        model.addAttribute("groupDataList",  mapList);
         return "index";
     }
     @RequestMapping("/act-list")

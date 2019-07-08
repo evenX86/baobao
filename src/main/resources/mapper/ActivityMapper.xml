@@ -28,7 +28,7 @@
     </sql>
 
     <select id="queryGroupNum" resultType="map">
-        SELECT count(*) as cnt,group_name from alex_activity where status=1 group by group_name
+        SELECT count(*) as cnt,group_name from alex_activity where status=1 group by group_name order by cnt desc
     </select>
 
     <select id="getAll" resultMap="BaseResultMap">

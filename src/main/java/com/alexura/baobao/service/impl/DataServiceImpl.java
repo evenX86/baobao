@@ -35,14 +35,12 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public List<ActivityEntity> listActivity() {
-        List<ActivityEntity> result = activityMapper.getAll();
-        return  result;
+        return activityMapper.getAll();
     }
 
     @Override
     public List<ActivityEntity> listActivity(String groupName) {
-        List<ActivityEntity> result = activityMapper.getAllByGroup(groupName);
-        return  result;
+        return activityMapper.getAllByGroup(groupName);
     }
 
     @Override

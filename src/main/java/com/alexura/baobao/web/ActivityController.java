@@ -295,4 +295,39 @@ public class ActivityController {
         result.put("msg", "查询成功");
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("/grpActNumList")
+    @ResponseBody
+    public ResponseEntity<?> grpActNumList() {
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> actList = dataService.queryGroupNum();
+        List<UserEntity> userEntityList = userService.listUser();
+        Set<String> groupNameSet = new HashSet<>();
+        int i = 1;
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Map<String, Object> map : actList) {
+            String grpName = (String) map.get("group_name");
+            if (StringUtils.isBlank(grpName)) {
+                continue;
+            }
+            map.put("id", i ++);
+            resultList.add(map);
+            groupNameSet.add(grpName);
+        }
+        for (UserEntity userEntity: userEntityList) {
+            if (groupNameSet.contains(userEntity.getGroupName()) || "admin".equals(userEntity.getGroupName())) {
+                continue;
+            }
+            Map<String, Object> tmpMap = new HashMap<>();
+            tmpMap.put("cnt", 0);
+            tmpMap.put("id", i ++);
+            tmpMap.put("group_name", userEntity.getGroupName());
+            resultList.add(tmpMap);
+        }
+
+        result.put("data", resultList);
+        result.put("success", true);
+        result.put("msg", "查询成功");
+        return ResponseEntity.ok(result);
+    }
 }
