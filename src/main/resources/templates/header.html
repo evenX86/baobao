@@ -81,6 +81,17 @@
                 <a href="#" th:if="${session.user == 'admin'}"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li th:class="${menu=='userList'}?'active':''">
+                        <a href="/user/list" th:text="活动添加">
+                        </a></li>
+                    <li th:class="${menu=='userAdd'}?'active':''">
+                        <a href="/user/add" th:text="用户添加">
+                        </a></li>
+                </ul>
+            </li>
+            <li th:class="${#strings.contains(menu,'user')}?'active':''">
+                <a href="#" th:if="${session.user == 'admin'}"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li th:class="${menu=='userList'}?'active':''">
                         <a href="/user/list" th:text="用户统计">
                         </a></li>
                     <li th:class="${menu=='userAdd'}?'active':''">
