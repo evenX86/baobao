@@ -36,4 +36,6 @@ public interface ActivityMapper {
     List<ActivityEntity> queryActList(@Param("st") Date d1, @Param("et") Date d2, @Param("search") String groupOpt, @Param("comm") String comm);
 
     List<String> getCommunityList();
+
+    void insertPreActInfo(ActivityEntity activity);
 }
