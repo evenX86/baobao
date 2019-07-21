@@ -7,7 +7,6 @@ import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
 import com.alexura.baobao.service.UserService;
 import com.alexura.baobao.utils.ExcelUtils;
-import com.alexura.baobao.utils.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -103,6 +102,13 @@ public class ActivityController {
         return "activity/act-detail";
     }
 
+    @RequestMapping("pre-act-info")
+    public String preActInfo(Model model) {
+        List<ActivityEntity> activityEntityList = dataService.listPreActivity();
+        model.addAttribute("activityEntityList", activityEntityList);
+        return "activity/pre-act-info";
+    }
+
     @RequestMapping("edit-act")
     public String editAct(String actId,Model model) {
         if (!StringUtils.isNumeric(actId)) {
@@ -176,7 +182,7 @@ public class ActivityController {
         activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
         activityEntity.setActUser(entity.getAccount());
         activityWriteService.addActivityPre(activityEntity);
-        return "redirect:/act-list";
+        return "redirect:/activity/pre-act-info";
     }
 
     @PostMapping("/doEdit-act")
@@ -370,9 +376,13 @@ public class ActivityController {
 
     @PostMapping("/preActInfoList")
     @ResponseBody
-    public ResponseEntity<?> preActInfoList() {
+    public ResponseEntity<?> preActInfoList(Boolean allFlag) {
+        Map<String, Object> result = new HashMap<>();
         List<ActivityEntity> activityEntityList = dataService.listPreActivity();
-        log.error("xuyifei debug pre activity info : " + JsonUtil.write2JsonStr(activityEntityList));
-        return ResponseEntity.ok(activityEntityList);
+        if (activityEntityList.size() >10 && !allFlag) {
+            activityEntityList = activityEntityList.subList(0 ,10);
+        }
+        result.put("data", activityEntityList);
+        return ResponseEntity.ok(result);
     }
 }

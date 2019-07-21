@@ -72,14 +72,14 @@
                     <span class="nav-label">活动信息</span>
                 </a>
             </li>
-            <li th:class="${#strings.contains(menu,'addActivity')}?'active':''">
+            <li th:class="${#strings.contains(menu,'Activity')}?'active':''">
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">活动管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li th:class="${menu=='addActivity'}?'active':''">
+                    <li th:class="${menu=='ActivityAdd'}?'active':''">
                         <a href="/activity/addActivity" th:text="活动添加">
                         </a></li>
-                    <li th:class="${menu=='addActivityPre'}?'active':''">
-                        <a href="/activity/addActivityPre" th:text="活动预告添加">
+                    <li th:class="${menu=='ActivityPreInfo'}?'active':''">
+                        <a href="/activity/pre-act-info" th:text="活动预告">
                         </a></li>
                 </ul>
             </li>

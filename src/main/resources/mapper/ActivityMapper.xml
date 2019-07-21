@@ -28,7 +28,7 @@
     </sql>
 
     <sql id="Pre_Column_List" >
-      `group_name`,act_date,creator as act_user,act_pre_title as introduce,created
+      id,`group_name`,act_date,creator as act_user,act_pre_title as introduce,created
     </sql>
 
     <select id="queryGroupNum" resultType="map">
