@@ -134,7 +134,7 @@
                         <div class="ibox-title">
                             <h5>活动预告</h5>
                             <div class="ibox-tools">
-                                <a href="/activity/add-act-pre">更多<i class="fa fa-arrow-circle-o-right"></i></a>
+                                <a href="/activity/pre-act-info">更多<i class="fa fa-arrow-circle-o-right"></i></a>
                             </div>
                         </div>
                         <div class="ibox-content">
@@ -309,7 +309,7 @@
         });
 
         $.post( "/activity/preActInfoList", function( data ) {
-            data.forEach(function (result) {
+            data.data.forEach(function (result) {
                 var introduce = result.introduce;
                 if (introduce.length > 20) {
                     introduce = introduce.substring(0,50)+"...";
