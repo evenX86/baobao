@@ -72,19 +72,14 @@
                     <span class="nav-label">活动信息</span>
                 </a>
             </li>
-            <li th:class="${menu=='addActivity'}?'active':''">
-                <a href="/activity/addActivity"><i class="fa fa-edit"></i>
-                    <span class="nav-label">活动录入</span>
-                </a>
-            </li>
-            <li th:class="${#strings.contains(menu,'user')}?'active':''">
-                <a href="#" th:if="${session.user == 'admin'}"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+            <li th:class="${#strings.contains(menu,'addActivity')}?'active':''">
+                <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">活动管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li th:class="${menu=='userList'}?'active':''">
-                        <a href="/user/list" th:text="活动添加">
+                    <li th:class="${menu=='addActivity'}?'active':''">
+                        <a href="/activity/addActivity" th:text="活动添加">
                         </a></li>
-                    <li th:class="${menu=='userAdd'}?'active':''">
-                        <a href="/user/add" th:text="用户添加">
+                    <li th:class="${menu=='addActivityPre'}?'active':''">
+                        <a href="/activity/addActivityPre" th:text="活动预告添加">
                         </a></li>
                 </ul>
             </li>
@@ -96,7 +91,8 @@
                         </a></li>
                     <li th:class="${menu=='userAdd'}?'active':''">
                         <a href="/user/add" th:text="用户添加">
-                        </a></li>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <!--<li th:class="${menu=='feedback'}?'active':''">

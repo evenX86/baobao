@@ -69,6 +69,27 @@ public class ActivityController {
         return "add-act";
     }
 
+    @RequestMapping("addActivityPre")
+    public String addActivityPre(Model model, HttpSession session) {
+        Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
+        UserEntity entity =  userService.getUserByAccount(uid);
+        ActivityEntity activityEntity = new ActivityEntity();
+        if (entity == null) {
+            return "error";
+        }
+        activityEntity.setGroupName(entity.getGroupName());
+        if (StringUtils.isBlank(entity.getGroupName())) {
+            activityEntity.setGroupName("未填写社团信息");
+        }
+        List<String> communityList = new ArrayList<>();
+        communityList.add( StringUtils.isBlank(entity.getCommunity1())? "未填写结对社区": entity.getCommunity1());
+        communityList.add( StringUtils.isBlank(entity.getCommunity2())? "未填写结对社区": entity.getCommunity2());
+        model.addAttribute("communityList", communityList);
+        model.addAttribute("activity", activityEntity);
+        model.addAttribute("groupName", activityEntity.getGroupName());
+        return "activity/add-act-pre";
+    }
+
     @RequestMapping("detail-info")
     public String detailInfo(String actId,Model model) {
         Integer actIdVal = Integer.valueOf(actId);
@@ -138,6 +159,16 @@ public class ActivityController {
             String imageURL4 = imageUploadService.uploadImage( file4, uploadPath, path, entity.getId());
             activityEntity.setActImg4(imageURL4);
         }
+        dataService.addActivity(activityEntity);
+        return "redirect:/act-list";
+    }
+
+    @PostMapping("/saveActivityPre")
+    public String saveActivityPre(@ModelAttribute ActivityEntity activityEntity, HttpSession session) {
+
+        Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
+        UserEntity entity =  userService.getUserByAccount(uid);
+        activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
         dataService.addActivity(activityEntity);
         return "redirect:/act-list";
     }
