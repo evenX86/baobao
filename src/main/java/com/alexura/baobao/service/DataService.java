@@ -30,4 +30,10 @@ public interface DataService {
     List<ActivityEntity> queryActByOpt(Date d1, Date d2, String groupOpt,String communityOpt, UserEntity userEntity);
 
     List<String> getCommunityList();
+
+    /**
+     * 获取预览活动
+     * @return
+     */
+    List<ActivityEntity> listPreActivity();
 }

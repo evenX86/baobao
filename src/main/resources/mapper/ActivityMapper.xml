@@ -27,6 +27,10 @@
       id, `group_name`,act_addr,act_date,act_people_num,act_user_tel,act_user,project,community,introduce,`desc`,act_img1,act_img2,act_img3,act_img4,created,modified
     </sql>
 
+    <sql id="Pre_Column_List" >
+      `group_name`,act_date,creator as act_user,act_pre_title as introduce,created
+    </sql>
+
     <select id="queryGroupNum" resultType="map">
         SELECT count(*) as cnt,group_name from alex_activity where status=1 group by group_name order by cnt desc
     </select>
@@ -75,6 +79,18 @@
         WHERE
         id=#{actId}
     </select>
+
+
+    <select id="listPreActivity" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Pre_Column_List" />
+        FROM alex_activity_pre
+        WHERE
+        status = 1
+        AND
+        act_date >= now()
+    </select>
+
 
     <select id="countAll" resultType="java.lang.Long" >
        SELECT count(*) from alex_activity where status=1

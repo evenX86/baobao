@@ -2,10 +2,12 @@ package com.alexura.baobao.web;
 
 import com.alexura.baobao.entity.ActivityEntity;
 import com.alexura.baobao.entity.UserEntity;
+import com.alexura.baobao.service.ActivityWriteService;
 import com.alexura.baobao.service.DataService;
 import com.alexura.baobao.service.ImageUploadService;
 import com.alexura.baobao.service.UserService;
 import com.alexura.baobao.utils.ExcelUtils;
+import com.alexura.baobao.utils.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -41,6 +43,9 @@ public class ActivityController {
     private DataService dataService;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ActivityWriteService activityWriteService;
 
     @Autowired
     private ImageUploadService imageUploadService;
@@ -169,7 +174,8 @@ public class ActivityController {
         Integer uid = (Integer) session.getAttribute(SESSION_UID_KEY);
         UserEntity entity =  userService.getUserByAccount(uid);
         activityEntity.setGroupName(StringUtils.isBlank(entity.getGroupName())?"默认社团":entity.getGroupName());
-        dataService.addActivity(activityEntity);
+        activityEntity.setActUser(entity.getAccount());
+        activityWriteService.addActivityPre(activityEntity);
         return "redirect:/act-list";
     }
 
@@ -360,5 +366,13 @@ public class ActivityController {
         result.put("success", true);
         result.put("msg", "查询成功");
         return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/preActInfoList")
+    @ResponseBody
+    public ResponseEntity<?> preActInfoList() {
+        List<ActivityEntity> activityEntityList = dataService.listPreActivity();
+        log.error("xuyifei debug pre activity info : " + JsonUtil.write2JsonStr(activityEntityList));
+        return ResponseEntity.ok(activityEntityList);
     }
 }

@@ -138,15 +138,9 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-
                             <div>
                                 <div class="feed-activity-list">
-                                    <div class="feed-element">
-                                        <div class="media-body ">
-                                            <small class="pull-right">2019-09-01</small>
-                                            <strong>社团名</strong> 预告. <br>
-                                            <small class="text-muted">活动地点</small>
-                                        </div>
+                                    <div class="feed-element" id="feedsElement">
                                     </div>
                                 </div>
                             </div>
@@ -311,6 +305,21 @@
             order:[
                 [0, "asc"]
             ]
+
+        });
+
+        $.post( "/activity/preActInfoList", function( data ) {
+            data.forEach(function (result) {
+                var introduce = result.introduce;
+                if (introduce.length > 20) {
+                    introduce = introduce.substring(0,50)+"...";
+                }
+                $("#feedsElement").append("<div class=\"media-body \">" +
+                    "                                            <small class=\"pull-right\">"+result.actDate+"</small>"+introduce+"<br>" +
+                "                                        </div>");
+            });
+
+
 
         });
 

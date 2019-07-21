@@ -5,7 +5,10 @@ import com.alexura.baobao.mapper.ActivityMapper;
 import com.alexura.baobao.service.ActivityWriteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.xml.ws.Action;
 
 /**
  * Created with baobao
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ActivityWriteServiceImpl implements ActivityWriteService {
     private static final Logger log = LoggerFactory.getLogger(ActivityWriteServiceImpl.class);
+    @Autowired
     private ActivityMapper activityMapper;
 
 

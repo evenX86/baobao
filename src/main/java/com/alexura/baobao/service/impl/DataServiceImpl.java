@@ -94,4 +94,9 @@ public class DataServiceImpl implements DataService {
     public List<String> getCommunityList() {
         return activityMapper.getCommunityList();
     }
+
+    @Override
+    public List<ActivityEntity> listPreActivity() {
+        return activityMapper.listPreActivity();
+    }
 }

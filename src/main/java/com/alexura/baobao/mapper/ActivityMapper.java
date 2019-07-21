@@ -38,4 +38,10 @@ public interface ActivityMapper {
     List<String> getCommunityList();
 
     void insertPreActInfo(ActivityEntity activity);
+
+    /**
+     * 查询所有有效且日期大于当前日期的活动预告信息,
+     * @return
+     */
+    List<ActivityEntity> listPreActivity();
 }
