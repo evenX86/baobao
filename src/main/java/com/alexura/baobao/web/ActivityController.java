@@ -98,6 +98,7 @@ public class ActivityController {
     public String detailInfo(String actId,Model model) {
         Integer actIdVal = Integer.valueOf(actId);
         ActivityEntity activityEntity = dataService.getActById(actIdVal);
+        activityEntity.setActDate(activityEntity.getActDate().replace("00:00:00",""));
         model.addAttribute("activity", activityEntity);
         return "activity/act-detail";
     }
