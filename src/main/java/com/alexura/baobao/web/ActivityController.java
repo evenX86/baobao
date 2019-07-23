@@ -294,6 +294,40 @@ public class ActivityController {
 
     }
 
+    @PostMapping("/delPreAct")
+    @ResponseBody
+    public ResponseEntity<?> delPreAct(String actId, HttpSession session) {
+        Map<String, Object> result = new HashMap<>();
+        String account = (String) session.getAttribute(SESSION_KEY);
+        UserEntity userEntity = userService.getUser(account);
+        if (userEntity == null) {
+            result.put("success", false);
+            result.put("msg", "无权限");
+            return ResponseEntity.ok(result);
+        }
+        try {
+            Integer actIdVal = Integer.valueOf(actId);
+            ActivityEntity entity = dataService.getPreActById(actIdVal);
+            if (!entity.getGroupName().equals(userEntity.getGroupName())) {
+                if (!"admin".equals(account)) {
+                    result.put("success", false);
+                    result.put("msg", "无权限");
+                    return ResponseEntity.ok(result);
+                }
+            }
+            dataService.delPreActById(actIdVal);
+            result.put("success", true);
+            result.put("msg", "删除成功");
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            log.error("删除活动出错: " ,e);
+            result.put("success",false);
+            result.put("msg", "系统异常" + e.getMessage());
+            return ResponseEntity.ok(result);
+        }
+
+    }
+
     @PostMapping("/optList")
     @ResponseBody
     public ResponseEntity<?> optList(String startDate, String endDate, String groupOpt, String communityOpt, HttpSession session) {

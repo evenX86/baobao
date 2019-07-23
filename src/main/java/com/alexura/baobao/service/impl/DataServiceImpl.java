@@ -99,4 +99,13 @@ public class DataServiceImpl implements DataService {
     public List<ActivityEntity> listPreActivity() {
         return activityMapper.listPreActivity();
     }
+
+    @Override
+    public ActivityEntity getPreActById(Integer actIdVal) {
+        return activityMapper.getPreActById(actIdVal);    }
+
+    @Override
+    public void delPreActById(Integer actIdVal) {
+        activityMapper.delPreActById(actIdVal);
+    }
 }

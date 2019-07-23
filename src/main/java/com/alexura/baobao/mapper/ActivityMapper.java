@@ -44,4 +44,18 @@ public interface ActivityMapper {
      * @return
      */
     List<ActivityEntity> listPreActivity();
+
+    /**
+     * 根据预览活动id 获取预览活动信息
+     * @param actId
+     * @return
+     */
+    ActivityEntity getPreActById(@Param("actId") Integer actId);
+
+    /**
+     * 根据预览活动id删除
+     * @param actIdVal
+     */
+    void delPreActById(@Param("actId") Integer actIdVal);
+
 }

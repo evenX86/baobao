@@ -136,7 +136,7 @@
             columnDefs:[{
                 targets: 5,
                 render: function (data) {
-                    return "<a href=\"/activity/edit-act/?actId=" + data.id + "\" target=\"_blank\">编辑</a>&nbsp" +
+                    return "&nbsp" +
                         "<a class=\"list-group-item-danger\"  data-toggle=\"modal\" data-actId=\"" + data.id + "\", data-target=\".bs-example-modal-lg-1\">删除</a>"
                 }
             }],
@@ -164,7 +164,7 @@
         /*;*/
         $("#delActBtn").click(function (event) {
             var actId = $("#actId").val();
-            $.post("/activity/del", {actId: actId}, function (data) {
+            $.post("/activity/delPreAct", {actId: actId}, function (data) {
                 if (!data.success) {
                     alert("删除失败: " + data.msg);
                 } else {

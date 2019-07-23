@@ -81,6 +81,15 @@
     </select>
 
 
+    <select id="getPreActById" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Pre_Column_List" />
+        FROM alex_activity_pre
+        WHERE
+        id=#{actId}
+    </select>
+
+
     <select id="listPreActivity" resultMap="BaseResultMap" parameterType="map">
         SELECT
         <include refid="Pre_Column_List" />
@@ -148,6 +157,16 @@
     <update id="delActById" parameterType="map" >
         UPDATE
         alex_activity
+        SET
+        status=-1,
+        modified = now()
+        WHERE
+        id = #{actId}
+    </update>
+
+    <update id="delPreActById" parameterType="map" >
+        UPDATE
+        alex_activity_pre
         SET
         status=-1,
         modified = now()

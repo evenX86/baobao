@@ -36,4 +36,8 @@ public interface DataService {
      * @return
      */
     List<ActivityEntity> listPreActivity();
+
+    ActivityEntity getPreActById(Integer actIdVal);
+
+    void delPreActById(Integer actIdVal);
 }
