@@ -121,8 +121,8 @@
 
     <insert id="insertPreActInfo" parameterType="com.alexura.baobao.entity.ActivityEntity" >
         INSERT INTO alex_activity_pre
-        (`group_name`,act_date,`act_pre_title`,creator,created)
-        VALUES(#{groupName},#{actDate},#{introduce},#{actUser},now())
+        (`group_name`,act_date,`act_pre_title`,`act_addr`,creator,created)
+        VALUES(#{groupName},#{actDate},#{introduce},#{actAddr},#{actUser},now())
     </insert>
 
     <update id="update" parameterType="com.alexura.baobao.entity.ActivityEntity" >
