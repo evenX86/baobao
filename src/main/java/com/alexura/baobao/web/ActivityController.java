@@ -417,6 +417,11 @@ public class ActivityController {
         if (activityEntityList.size() >10 && !allFlag) {
             activityEntityList = activityEntityList.subList(0 ,10);
         }
+        if (!allFlag) {
+            for (ActivityEntity activityEntity : activityEntityList) {
+                activityEntity.setIntroduce(activityEntity.getGroupName()+"于" + activityEntity.getActAddr() + "开展" + activityEntity.getIntroduce());
+            }
+        }
         result.put("data", activityEntityList);
         return ResponseEntity.ok(result);
     }

@@ -319,7 +319,7 @@
 
         });
 
-        $.post( "/activity/preActInfoList", function( data ) {
+        $.post( "/activity/preActInfoList", {allFlag:false},function( data ) {
             data.data.forEach(function (result) {
                 var introduce = result.introduce;
                 if (introduce.length > 20) {
