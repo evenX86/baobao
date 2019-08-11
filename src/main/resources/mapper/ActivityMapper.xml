@@ -168,8 +168,7 @@
         UPDATE
         alex_activity_pre
         SET
-        status=-1,
-        modified = now()
+        status=-1
         WHERE
         id = #{actId}
     </update>
