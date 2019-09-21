@@ -24,4 +24,6 @@ public interface UserService {
     public void updateUser(UserEntity userEntity);
 
     void deleteUser(UserEntity entity);
+
+    List<String> getGrpNameList();
 }

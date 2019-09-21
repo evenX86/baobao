@@ -86,4 +86,7 @@
         WHERE
         id = #{id}
     </update>
+    <select id="getGrpNameList" resultType="java.lang.String">
+        SELECT distinct group_name from alex_user where status=1
+    </select>
 </mapper>

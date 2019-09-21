@@ -70,4 +70,9 @@ public class UserServiceImpl  implements UserService {
         userMapper.deleteUser(entity);
 
     }
+
+    @Override
+    public List<String> getGrpNameList() {
+        return userMapper.getGrpNameList();
+    }
 }

@@ -33,52 +33,9 @@
                                         </span>
                                                     <select class="form-control" id="groupOpt">
                                                         <option value="全部">全部</option>
-                                                        <option value="温州市象棋协会">温州市象棋协会</option>
-                                                        <option value="温州市社会体育指导员协会">温州市社会体育指导员协会</option>
-                                                        <option value="温州马拉松协会">温州马拉松协会</option>
-                                                        <option value="温州市空竹运动协会">温州市空竹运动协会</option>
-                                                        <option value="温州市排舞广场舞协会">温州市排舞广场舞协会</option>
-                                                        <option value="温州市山地户外运动协会">温州市山地户外运动协会</option>
-                                                        <option value="温州市体育场馆协会">温州市体育场馆协会</option>
-                                                        <option value="温州市轮滑运动协会">温州市轮滑运动协会</option>
-                                                        <option value="温州市保龄球运动协会">温州市保龄球运动协会</option>
-                                                        <option value="温州市风筝协会">温州市风筝协会</option>
-                                                        <option value="温州市桥牌协会">温州市桥牌协会</option>
-                                                        <option value="温州市登山协会">温州市登山协会</option>
-                                                        <option value="温州市钓鱼协会">温州市钓鱼协会</option>
-                                                        <option value="温州市自行车运动协会">温州市自行车运动协会</option>
-                                                        <option value="温州市无线电定向运动协会">温州市无线电定向运动协会</option>
-                                                        <option value="温州市国际体育舞蹈协会">温州市国际体育舞蹈协会</option>
-                                                        <option value="温州市围棋协会">温州市围棋协会</option>
-                                                        <option value="温州市海陆空模型运动协会">温州市海陆空模型运动协会</option>
-                                                        <option value="温州市跆拳道协会">温州市跆拳道协会</option>
-                                                        <option value="温州市游泳协会">温州市游泳协会</option>
-                                                        <option value="温州市乒乓球协会">温州市乒乓球协会</option>
-                                                        <option value="温州市路跑协会">温州市路跑协会</option>
-                                                        <option value="温州市武术协会">温州市武术协会</option>
-                                                        <option value="温州市信鸽协会">温州市信鸽协会</option>
-                                                        <option value="温州市冬泳协会">温州市冬泳协会</option>
-                                                        <option value="温州市救生协会">温州市救生协会</option>
-                                                        <option value="温州市航空运动协会">温州市航空运动协会</option>
-                                                        <option value="温州市温州南拳协会">温州市温州南拳协会</option>
-                                                        <option value="温州市龙舟协会">温州市龙舟协会</option>
-                                                        <option value="温州市篮球协会">温州市篮球协会</option>
-                                                        <option value="温州市篮球发展协会">温州市篮球发展协会</option>
-                                                        <option value="温州市电子竞技运动协会">温州市电子竞技运动协会</option>
-                                                        <option value="温州市电子竞技运动发展协会">温州市电子竞技运动发展协会</option>
-                                                        <option value="温州市户外休闲运动协会">温州市户外休闲运动协会</option>
-                                                        <option value="温州市中华韵形体运动协会">温州市中华韵形体运动协会</option>
-                                                        <option value="温州市深蓝摩托艇运动协会">温州市深蓝摩托艇运动协会</option>
-                                                        <option value="温州市瑜伽协会">温州市瑜伽协会</option>
-                                                        <option value="温州市羽毛球协会">温州市羽毛球协会</option>
-                                                        <option value="温州市健身舞协会">温州市健身舞协会</option>
-                                                        <option value="温州市健美健身协会">温州市健美健身协会</option>
-                                                        <option value="温州市户外运动协会">温州市户外运动协会</option>
-                                                        <option value="温州市太极拳运动协会">温州市太极拳运动协会</option>
-                                                        <option value="温州市幼儿体育协会">温州市幼儿体育协会</option>
-                                                        <option value="温州市啦啦操与健美操协会">温州市啦啦操与健美操协会</option>
-                                                        <option value="温州市柔道协会">温州市柔道协会</option>
-                                                        <option value="温州市体育舞蹈运动协会">温州市体育舞蹈运动协会</option>
+                                                        <option value="0">请选择</option>
+                                                        <option th:each="item:${grpNameList}" th:text="${item}"
+                                                                th:value="${item}" th:selected="(${item} == ${grpName})"></option>
                                                     </select>
                                                 </div>
                                             </div><!-- /.col-lg-6 -->
@@ -218,9 +175,6 @@
             autoclose: true,
             language: "zh-CN"
         });
-
-
-
 
          var table = $('.dataTables-example').DataTable({
             language: {

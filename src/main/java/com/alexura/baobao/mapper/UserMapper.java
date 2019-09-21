@@ -43,4 +43,6 @@ public interface UserMapper {
     UserEntity getUser(@Param("account") String account);
 
     void deleteUser(UserEntity entity);
+
+    List<String> getGrpNameList();
 }
