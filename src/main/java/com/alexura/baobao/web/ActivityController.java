@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
@@ -376,22 +377,28 @@ public class ActivityController {
 
     @PostMapping("/grpActNumList")
     @ResponseBody
-    public ResponseEntity<?> grpActNumList() {
+    public ResponseEntity<?> grpActNumList(HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> actList = dataService.queryGroupNum();
         List<UserEntity> userEntityList = userService.listUser();
         Set<String> groupNameSet = new HashSet<>();
         int i = 1;
         List<Map<String, Object>> resultList = new ArrayList<>();
+        StringBuffer sb = request.getRequestURL();
+        String host = sb.toString().split("/a")[0];
+
         for (Map<String, Object> map : actList) {
             String grpName = (String) map.get("group_name");
+            Long cnt = (Long) map.get("cnt");
             if (StringUtils.isBlank(grpName)) {
                 continue;
             }
             map.put("id", i ++);
+            map.put("url", host+"/act-list?grpName="+grpName);
             resultList.add(map);
             groupNameSet.add(grpName);
         }
+
         for (UserEntity userEntity: userEntityList) {
             if (groupNameSet.contains(userEntity.getGroupName()) || "admin".equals(userEntity.getGroupName())) {
                 continue;
@@ -400,6 +407,7 @@ public class ActivityController {
             tmpMap.put("cnt", 0);
             tmpMap.put("id", i ++);
             tmpMap.put("group_name", userEntity.getGroupName());
+            tmpMap.put("url", host+"/act-list?grpName="+userEntity.getGroupName());
             resultList.add(tmpMap);
         }
 

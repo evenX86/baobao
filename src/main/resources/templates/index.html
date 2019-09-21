@@ -309,7 +309,10 @@
                 },
                 {
                     "targets": [2],
-                    "searchable": false
+                    "searchable": false,
+                    "render": function ( data, type, row, meta ) {
+                        return '<a href="'+row.url+'">'+row.cnt+'</a>';
+                    }
                 }
 
             ],
