@@ -389,7 +389,6 @@ public class ActivityController {
 
         for (Map<String, Object> map : actList) {
             String grpName = (String) map.get("group_name");
-            Long cnt = (Long) map.get("cnt");
             if (StringUtils.isBlank(grpName)) {
                 continue;
             }
